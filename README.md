@@ -3,6 +3,8 @@
 A self-hosted web app that turns [OpenTelemetry Weaver](https://github.com/open-telemetry/weaver)'s
 `registry live-check` output into a conformance report a human can actually read.
 
+![OTel SemConv Checker UI](images/checker-snapshot.png)
+
 ## Why this exists
 
 I built the first version of this at a previous employer to answer a basic
