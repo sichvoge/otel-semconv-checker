@@ -7,8 +7,7 @@ expected_metrics:
   - http.server.active_requests
 
 # Metrics intentionally not emitted — suppressed from the missing tab.
-ignored_metrics:
-  - http.client.request.body.size
+ignored_metrics: []
 
 # Semconv namespaces to evaluate for missing signals.
 # [] (default) = auto-detect from seen attributes and metrics.
