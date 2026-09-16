@@ -193,7 +193,7 @@ body { font-family: var(--font-sans); background: var(--color-background-primary
     <div class="hl">
       <div class="logo"></div>
       <span class="app-title">telint</span>
-      <span class="app-sub">kong-gateway</span>
+      <span class="app-sub">api-gateway</span>
     </div>
     <span id="status-badge" class="status-idle">idle</span>
   </div>
@@ -209,7 +209,7 @@ body { font-family: var(--font-sans); background: var(--color-background-primary
     <div class="state-title">ready to listen</div>
     <div class="state-sub">
       Press <strong>start</strong> to launch Weaver and begin collecting telemetry.<br>
-      Point your Kong OTel plugin at <code>localhost:4318</code>.
+      Point your gateway's OTel plugin at <code>localhost:4318</code>.
     </div>
   </div>
 
@@ -217,7 +217,7 @@ body { font-family: var(--font-sans); background: var(--color-background-primary
     <div class="state-title"><span class="pulse"></span>listening for telemetry</div>
     <div class="state-sub">
       Weaver is running and collecting OTLP traffic.<br>
-      Send requests through Kong, then press <strong>stop</strong> to generate the report.
+      Send requests through your gateway, then press <strong>stop</strong> to generate the report.
     </div>
     <div class="live-counters">
       <div class="counter"><div class="counter-value" id="cnt-spans">0</div><div class="counter-label">spans</div></div>
@@ -231,10 +231,10 @@ body { font-family: var(--font-sans); background: var(--color-background-primary
     <div class="rb">
       <span class="rbl">resource</span>
       <div class="rba">
-        <div class="rbattr">service.name<span>=</span>kong-gateway</div>
+        <div class="rbattr">service.name<span>=</span>api-gateway</div>
         <div class="rbattr">service.version<span>=</span>3.9.0</div>
         <div class="rbattr">deployment.environment<span>=</span>production</div>
-        <div class="rbattr">host.name<span>=</span>kong-node-1</div>
+        <div class="rbattr">host.name<span>=</span>gateway-node-1</div>
       </div>
       <span class="rbok">clean</span>
     </div>
@@ -250,14 +250,14 @@ body { font-family: var(--font-sans); background: var(--color-background-primary
 <script>
 const DATA = {
   broken: [
-    {sig:'span', name:'kong', count:1, stability:'development', hasViolation:true, advice:[
+    {sig:'span', name:'gateway', count:1, stability:'development', hasViolation:true, advice:[
       {level:'violation',   id:'deprecated',        msg:'Attribute <b>http.method</b> is deprecated. Replaced by <b>http.request.method</b>.', cnt:'1/1'},
       {level:'violation',   id:'deprecated',        msg:'Attribute <b>http.url</b> is deprecated. Replaced by <b>url.full</b>.', cnt:'1/1'},
       {level:'violation',   id:'deprecated',        msg:'Attribute <b>http.host</b> is deprecated. Replaced by <b>server.address</b>.', cnt:'1/1'},
       {level:'violation',   id:'deprecated',        msg:'Attribute <b>http.status_code</b> is deprecated. Replaced by <b>http.response.status_code</b>.', cnt:'1/1'},
       {level:'improvement', id:'not_stable',        msg:'Attribute <b>http.flavor</b> is not stable; stability = development.', cnt:'1/1'},
     ]},
-    {sig:'span', name:'kong.upstream', count:47, stability:'development', hasViolation:true, advice:[
+    {sig:'span', name:'gateway.upstream', count:47, stability:'development', hasViolation:true, advice:[
       {level:'violation', id:'missing_attribute', msg:'Required attribute <b>server.address</b> is not present.', cnt:'47/47'},
       {level:'violation', id:'missing_attribute', msg:'Required attribute <b>server.port</b> is not present.',   cnt:'47/47'},
     ]},
@@ -298,13 +298,13 @@ const DATA = {
     ]},
   ],
   informational: [
-    {sig:'metric', name:'kong.request.duration',  count:47, note:'Kong proprietary metric. Not in semconv registry.'},
-    {sig:'metric', name:'kong.bandwidth',          count:47, note:'Kong proprietary metric. Not in semconv registry.'},
-    {sig:'metric', name:'kong.upstream.latency',   count:47, note:'Kong proprietary metric. Not in semconv registry.'},
-    {sig:'span',   name:'kong (attr: kong.request.id)',              count:1, note:'Kong proprietary attribute on span. Not in semconv registry.'},
-    {sig:'log',    name:'log (attr: kong.route.regex_priority)',      count:1, note:'Kong proprietary attribute on log. Not in semconv registry.'},
-    {sig:'log',    name:'log (attr: kong.upstream.uri)',              count:1, note:'Kong proprietary attribute on log. Not in semconv registry.'},
-    {sig:'log',    name:'log (attr: kong.service.read_timeout)',      count:1, note:'Kong proprietary attribute on log. Not in semconv registry.'},
+    {sig:'metric', name:'gateway.request.duration',  count:47, note:'Proprietary metric. Not in semconv registry.'},
+    {sig:'metric', name:'gateway.bandwidth',          count:47, note:'Proprietary metric. Not in semconv registry.'},
+    {sig:'metric', name:'gateway.upstream.latency',   count:47, note:'Proprietary metric. Not in semconv registry.'},
+    {sig:'span',   name:'gateway (attr: gateway.request.id)',              count:1, note:'Proprietary attribute on span. Not in semconv registry.'},
+    {sig:'log',    name:'log (attr: gateway.route.regex_priority)',      count:1, note:'Proprietary attribute on log. Not in semconv registry.'},
+    {sig:'log',    name:'log (attr: gateway.upstream.uri)',              count:1, note:'Proprietary attribute on log. Not in semconv registry.'},
+    {sig:'log',    name:'log (attr: gateway.service.read_timeout)',      count:1, note:'Proprietary attribute on log. Not in semconv registry.'},
   ],
 };
 
@@ -318,7 +318,7 @@ const SIGS = ['span','metric','log'];
 let appState   = 'idle';
 let activeTab  = 'broken';
 const sigFilter = {broken:'all', missing:'all', custom:'all'};
-const openCards = new Set(['kong','http.server.request.duration','log']);
+const openCards = new Set(['gateway','http.server.request.duration','log']);
 let elapsed = 0, ticker = null, simTimer = null;
 let sigCounts = {spans:0, metrics:0, logs:0};
 
