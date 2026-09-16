@@ -1,0 +1,15 @@
+# Phase-06 QA stack.
+#
+# Part A of validate.js (the fetch-metric-requirements.js scraper + JSON
+# assertions 1-9) needs no stack at all. Part B (assertion 10 — the missing
+# tab requirement-level chip) drives the real application, so we include the
+# root docker-compose.yml verbatim rather than a copy that could drift.
+# Relative paths inside the included file resolve against the repo root, where
+# that file lives.
+#
+# backend + frontend are behind compose profile `app`, so validate.js runs:
+#   COMPOSE_PROFILES=app docker compose -f docker-compose.test.yml up -d --build
+#   COMPOSE_PROFILES=app docker compose -f docker-compose.test.yml down -v --remove-orphans
+# with UID/GID exported (weaver runs as ${UID}:${GID}).
+include:
+  - ../../docker-compose.yml

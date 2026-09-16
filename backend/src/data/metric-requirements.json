@@ -1,0 +1,4656 @@
+{
+  "generated_at": "2026-09-09T08:56:11.963Z",
+  "semconv_version": "main",
+  "source": "https://github.com/open-telemetry/semantic-conventions/tree/main/docs",
+  "metrics": {
+    "aspnetcore.authentication.authenticate.duration": "recommended",
+    "aspnetcore.authentication.challenges": "recommended",
+    "aspnetcore.authentication.forbids": "recommended",
+    "aspnetcore.authentication.sign_ins": "recommended",
+    "aspnetcore.authentication.sign_outs": "recommended",
+    "aspnetcore.authorization.attempts": "recommended",
+    "aspnetcore.diagnostics.exceptions": "recommended",
+    "aspnetcore.identity.sign_in.authenticate.duration": "recommended",
+    "aspnetcore.identity.sign_in.check_password_attempts": "recommended",
+    "aspnetcore.identity.sign_in.sign_ins": "recommended",
+    "aspnetcore.identity.sign_in.sign_outs": "recommended",
+    "aspnetcore.identity.sign_in.two_factor_clients_forgotten": "recommended",
+    "aspnetcore.identity.sign_in.two_factor_clients_remembered": "recommended",
+    "aspnetcore.identity.user.check_password_attempts": "recommended",
+    "aspnetcore.identity.user.create.duration": "recommended",
+    "aspnetcore.identity.user.delete.duration": "recommended",
+    "aspnetcore.identity.user.generated_tokens": "recommended",
+    "aspnetcore.identity.user.update.duration": "recommended",
+    "aspnetcore.identity.user.verify_token_attempts": "recommended",
+    "aspnetcore.memory_pool.allocated": "recommended",
+    "aspnetcore.memory_pool.evicted": "recommended",
+    "aspnetcore.memory_pool.pooled": "recommended",
+    "aspnetcore.memory_pool.rented": "recommended",
+    "aspnetcore.rate_limiting.active_request_leases": "recommended",
+    "aspnetcore.rate_limiting.queued_requests": "recommended",
+    "aspnetcore.rate_limiting.request.time_in_queue": "recommended",
+    "aspnetcore.rate_limiting.request_lease.duration": "recommended",
+    "aspnetcore.rate_limiting.requests": "recommended",
+    "aspnetcore.routing.match_attempts": "recommended",
+    "cicd.pipeline.run.active": "recommended",
+    "cicd.pipeline.run.duration": "recommended",
+    "cicd.pipeline.run.errors": "recommended",
+    "cicd.system.errors": "recommended",
+    "cicd.worker.count": "recommended",
+    "container.cpu.time": "recommended",
+    "container.cpu.usage": "opt_in",
+    "container.disk.io": "opt_in",
+    "container.filesystem.available": "recommended",
+    "container.filesystem.capacity": "recommended",
+    "container.filesystem.usage": "recommended",
+    "container.memory.available": "opt_in",
+    "container.memory.rss": "opt_in",
+    "container.memory.usage": "opt_in",
+    "container.memory.working_set": "opt_in",
+    "container.network.io": "opt_in",
+    "container.paging.faults": "opt_in",
+    "container.uptime": "recommended",
+    "cpython.gc.collected_objects": "recommended",
+    "cpython.gc.collections": "recommended",
+    "cpython.gc.uncollectable_objects": "recommended",
+    "db.client.connection.count": "recommended",
+    "db.client.connection.create_time": "recommended",
+    "db.client.connection.idle.max": "recommended",
+    "db.client.connection.idle.min": "recommended",
+    "db.client.connection.limit": "recommended",
+    "db.client.connection.pending_requests": "recommended",
+    "db.client.connection.timeouts": "recommended",
+    "db.client.connection.use_time": "recommended",
+    "db.client.connection.wait_time": "recommended",
+    "db.client.operation.duration": "recommended",
+    "db.client.response.returned_rows": "recommended",
+    "dns.lookup.duration": "opt_in",
+    "dotnet.assembly.count": "recommended",
+    "dotnet.exceptions": "recommended",
+    "dotnet.gc.collections": "recommended",
+    "dotnet.gc.heap.total_allocated": "recommended",
+    "dotnet.gc.last_collection.heap.fragmentation.size": "recommended",
+    "dotnet.gc.last_collection.heap.size": "recommended",
+    "dotnet.gc.last_collection.memory.committed_size": "recommended",
+    "dotnet.gc.pause.time": "recommended",
+    "dotnet.jit.compilation.time": "recommended",
+    "dotnet.jit.compiled_il.size": "recommended",
+    "dotnet.jit.compiled_methods": "recommended",
+    "dotnet.monitor.lock_contentions": "recommended",
+    "dotnet.process.cpu.count": "recommended",
+    "dotnet.process.cpu.time": "recommended",
+    "dotnet.process.memory.working_set": "recommended",
+    "dotnet.thread_pool.queue.length": "recommended",
+    "dotnet.thread_pool.thread.count": "recommended",
+    "dotnet.thread_pool.work_item.count": "recommended",
+    "dotnet.timer.count": "recommended",
+    "faas.coldstarts": "recommended",
+    "faas.cpu_usage": "recommended",
+    "faas.errors": "recommended",
+    "faas.init_duration": "recommended",
+    "faas.invocations": "recommended",
+    "faas.invoke_duration": "recommended",
+    "faas.mem_usage": "recommended",
+    "faas.net_io": "recommended",
+    "faas.timeouts": "recommended",
+    "go.config.gogc": "recommended",
+    "go.cpu.time": "opt_in",
+    "go.goroutine.count": "recommended",
+    "go.memory.allocated": "recommended",
+    "go.memory.allocations": "recommended",
+    "go.memory.gc.cycles": "opt_in",
+    "go.memory.gc.goal": "recommended",
+    "go.memory.gc.pause.duration": "opt_in",
+    "go.memory.limit": "recommended",
+    "go.memory.used": "recommended",
+    "go.processor.limit": "recommended",
+    "go.schedule.duration": "recommended",
+    "http.client.active_requests": "opt_in",
+    "http.client.connection.duration": "opt_in",
+    "http.client.open_connections": "opt_in",
+    "http.client.request.body.size": "opt_in",
+    "http.client.request.duration": "recommended",
+    "http.client.request.time_in_queue": "recommended",
+    "http.client.response.body.size": "opt_in",
+    "http.server.active_requests": "opt_in",
+    "http.server.request.body.size": "opt_in",
+    "http.server.request.duration": "recommended",
+    "http.server.response.body.size": "opt_in",
+    "jvm.buffer.count": "recommended",
+    "jvm.buffer.memory.limit": "recommended",
+    "jvm.buffer.memory.used": "recommended",
+    "jvm.class.count": "recommended",
+    "jvm.class.loaded": "recommended",
+    "jvm.class.unloaded": "recommended",
+    "jvm.cpu.count": "recommended",
+    "jvm.cpu.recent_utilization": "recommended",
+    "jvm.cpu.time": "recommended",
+    "jvm.file_descriptor.count": "opt_in",
+    "jvm.file_descriptor.limit": "opt_in",
+    "jvm.gc.duration": "recommended",
+    "jvm.memory.committed": "recommended",
+    "jvm.memory.init": "recommended",
+    "jvm.memory.limit": "recommended",
+    "jvm.memory.used": "recommended",
+    "jvm.memory.used_after_last_gc": "recommended",
+    "jvm.system.cpu.load_1m": "opt_in",
+    "jvm.system.cpu.utilization": "opt_in",
+    "jvm.thread.count": "recommended",
+    "k8s.container.cpu.limit.current": "recommended",
+    "k8s.container.cpu.limit.desired": "opt_in",
+    "k8s.container.cpu.limit.utilization": "opt_in",
+    "k8s.container.cpu.request.current": "recommended",
+    "k8s.container.cpu.request.desired": "opt_in",
+    "k8s.container.cpu.request.utilization": "opt_in",
+    "k8s.container.ephemeral_storage.limit": "recommended",
+    "k8s.container.ephemeral_storage.request": "recommended",
+    "k8s.container.ephemeral_storage.usage": "recommended",
+    "k8s.container.memory.limit.current": "recommended",
+    "k8s.container.memory.limit.desired": "opt_in",
+    "k8s.container.memory.request.current": "recommended",
+    "k8s.container.memory.request.desired": "opt_in",
+    "k8s.container.ready": "recommended",
+    "k8s.container.restart.count": "recommended",
+    "k8s.container.status.reason": "recommended",
+    "k8s.container.status.state": "recommended",
+    "k8s.container.storage.limit": "recommended",
+    "k8s.container.storage.request": "recommended",
+    "k8s.cronjob.job.active": "recommended",
+    "k8s.daemonset.node.current_scheduled": "recommended",
+    "k8s.daemonset.node.desired_scheduled": "recommended",
+    "k8s.daemonset.node.misscheduled": "recommended",
+    "k8s.daemonset.node.ready": "recommended",
+    "k8s.deployment.pod.available": "recommended",
+    "k8s.deployment.pod.desired": "recommended",
+    "k8s.hpa.metric.target.cpu.average_utilization": "opt_in",
+    "k8s.hpa.metric.target.cpu.average_value": "opt_in",
+    "k8s.hpa.metric.target.cpu.value": "opt_in",
+    "k8s.hpa.pod.current": "recommended",
+    "k8s.hpa.pod.desired": "recommended",
+    "k8s.hpa.pod.max": "recommended",
+    "k8s.hpa.pod.min": "recommended",
+    "k8s.job.pod.active": "recommended",
+    "k8s.job.pod.desired_successful": "recommended",
+    "k8s.job.pod.failed": "recommended",
+    "k8s.job.pod.max_parallel": "recommended",
+    "k8s.job.pod.successful": "recommended",
+    "k8s.namespace.phase": "recommended",
+    "k8s.node.condition.status": "recommended",
+    "k8s.node.cpu.allocatable": "recommended",
+    "k8s.node.cpu.time": "recommended",
+    "k8s.node.cpu.usage": "recommended",
+    "k8s.node.ephemeral_storage.allocatable": "recommended",
+    "k8s.node.filesystem.available": "recommended",
+    "k8s.node.filesystem.capacity": "recommended",
+    "k8s.node.filesystem.inode.count": "recommended",
+    "k8s.node.filesystem.inode.free": "recommended",
+    "k8s.node.filesystem.usage": "recommended",
+    "k8s.node.memory.allocatable": "recommended",
+    "k8s.node.memory.available": "recommended",
+    "k8s.node.memory.rss": "recommended",
+    "k8s.node.memory.usage": "recommended",
+    "k8s.node.memory.working_set": "recommended",
+    "k8s.node.network.errors": "recommended",
+    "k8s.node.network.io": "recommended",
+    "k8s.node.paging.faults": "recommended",
+    "k8s.node.pod.allocatable": "recommended",
+    "k8s.node.system_container.cpu.time": "recommended",
+    "k8s.node.system_container.cpu.usage": "recommended",
+    "k8s.node.system_container.memory.usage": "recommended",
+    "k8s.node.system_container.memory.working_set": "recommended",
+    "k8s.node.uptime": "recommended",
+    "k8s.persistentvolume.status.phase": "recommended",
+    "k8s.persistentvolume.storage.capacity": "recommended",
+    "k8s.persistentvolumeclaim.status.phase": "recommended",
+    "k8s.persistentvolumeclaim.storage.capacity": "recommended",
+    "k8s.persistentvolumeclaim.storage.request": "recommended",
+    "k8s.pod.cpu.time": "recommended",
+    "k8s.pod.cpu.usage": "recommended",
+    "k8s.pod.filesystem.available": "recommended",
+    "k8s.pod.filesystem.capacity": "recommended",
+    "k8s.pod.filesystem.usage": "recommended",
+    "k8s.pod.memory.available": "recommended",
+    "k8s.pod.memory.rss": "recommended",
+    "k8s.pod.memory.usage": "recommended",
+    "k8s.pod.memory.working_set": "recommended",
+    "k8s.pod.network.errors": "recommended",
+    "k8s.pod.network.io": "recommended",
+    "k8s.pod.paging.faults": "recommended",
+    "k8s.pod.status.phase": "recommended",
+    "k8s.pod.status.reason": "recommended",
+    "k8s.pod.uptime": "recommended",
+    "k8s.pod.volume.available": "recommended",
+    "k8s.pod.volume.capacity": "recommended",
+    "k8s.pod.volume.inode.count": "recommended",
+    "k8s.pod.volume.inode.free": "recommended",
+    "k8s.pod.volume.inode.used": "recommended",
+    "k8s.pod.volume.usage": "recommended",
+    "k8s.replicaset.pod.available": "recommended",
+    "k8s.replicaset.pod.desired": "recommended",
+    "k8s.replicationcontroller.pod.available": "recommended",
+    "k8s.replicationcontroller.pod.desired": "recommended",
+    "k8s.resourcequota.cpu.limit.hard": "recommended",
+    "k8s.resourcequota.cpu.limit.used": "recommended",
+    "k8s.resourcequota.cpu.request.hard": "recommended",
+    "k8s.resourcequota.cpu.request.used": "recommended",
+    "k8s.resourcequota.ephemeral_storage.limit.hard": "recommended",
+    "k8s.resourcequota.ephemeral_storage.limit.used": "recommended",
+    "k8s.resourcequota.ephemeral_storage.request.hard": "recommended",
+    "k8s.resourcequota.ephemeral_storage.request.used": "recommended",
+    "k8s.resourcequota.hugepage_count.request.hard": "recommended",
+    "k8s.resourcequota.hugepage_count.request.used": "recommended",
+    "k8s.resourcequota.memory.limit.hard": "recommended",
+    "k8s.resourcequota.memory.limit.used": "recommended",
+    "k8s.resourcequota.memory.request.hard": "recommended",
+    "k8s.resourcequota.memory.request.used": "recommended",
+    "k8s.resourcequota.object_count.hard": "recommended",
+    "k8s.resourcequota.object_count.used": "recommended",
+    "k8s.resourcequota.persistentvolumeclaim_count.hard": "recommended",
+    "k8s.resourcequota.persistentvolumeclaim_count.used": "recommended",
+    "k8s.resourcequota.storage.request.hard": "recommended",
+    "k8s.resourcequota.storage.request.used": "recommended",
+    "k8s.service.endpoint.count": "opt_in",
+    "k8s.service.load_balancer.ingress.count": "opt_in",
+    "k8s.statefulset.pod.available": "recommended",
+    "k8s.statefulset.pod.current": "recommended",
+    "k8s.statefulset.pod.desired": "recommended",
+    "k8s.statefulset.pod.ready": "recommended",
+    "k8s.statefulset.pod.updated": "recommended",
+    "kestrel.active_connections": "recommended",
+    "kestrel.active_tls_handshakes": "recommended",
+    "kestrel.connection.duration": "recommended",
+    "kestrel.queued_connections": "recommended",
+    "kestrel.queued_requests": "recommended",
+    "kestrel.rejected_connections": "recommended",
+    "kestrel.tls_handshake.duration": "recommended",
+    "kestrel.upgraded_connections": "recommended",
+    "messaging.client.consumed.messages": "recommended",
+    "messaging.client.operation.duration": "recommended",
+    "messaging.client.sent.messages": "recommended",
+    "messaging.process.duration": "recommended",
+    "nfs.client.net.count": "recommended",
+    "nfs.client.net.tcp.connection.accepted": "recommended",
+    "nfs.client.operation.count": "recommended",
+    "nfs.client.procedure.count": "recommended",
+    "nfs.client.rpc.authrefresh.count": "recommended",
+    "nfs.client.rpc.count": "recommended",
+    "nfs.client.rpc.retransmit.count": "recommended",
+    "nfs.server.fh.stale.count": "recommended",
+    "nfs.server.io": "recommended",
+    "nfs.server.net.count": "recommended",
+    "nfs.server.net.tcp.connection.accepted": "recommended",
+    "nfs.server.operation.count": "recommended",
+    "nfs.server.procedure.count": "recommended",
+    "nfs.server.repcache.requests": "recommended",
+    "nfs.server.rpc.count": "recommended",
+    "nfs.server.thread.count": "recommended",
+    "nodejs.eventloop.delay.max": "recommended",
+    "nodejs.eventloop.delay.mean": "recommended",
+    "nodejs.eventloop.delay.min": "recommended",
+    "nodejs.eventloop.delay.p50": "recommended",
+    "nodejs.eventloop.delay.p90": "recommended",
+    "nodejs.eventloop.delay.p99": "recommended",
+    "nodejs.eventloop.delay.stddev": "recommended",
+    "nodejs.eventloop.time": "recommended",
+    "nodejs.eventloop.utilization": "recommended",
+    "openshift.clusterquota.cpu.limit.hard": "recommended",
+    "openshift.clusterquota.cpu.limit.used": "recommended",
+    "openshift.clusterquota.cpu.request.hard": "recommended",
+    "openshift.clusterquota.cpu.request.used": "recommended",
+    "openshift.clusterquota.ephemeral_storage.limit.hard": "recommended",
+    "openshift.clusterquota.ephemeral_storage.limit.used": "recommended",
+    "openshift.clusterquota.ephemeral_storage.request.hard": "recommended",
+    "openshift.clusterquota.ephemeral_storage.request.used": "recommended",
+    "openshift.clusterquota.hugepage_count.request.hard": "recommended",
+    "openshift.clusterquota.hugepage_count.request.used": "recommended",
+    "openshift.clusterquota.memory.limit.hard": "recommended",
+    "openshift.clusterquota.memory.limit.used": "recommended",
+    "openshift.clusterquota.memory.request.hard": "recommended",
+    "openshift.clusterquota.memory.request.used": "recommended",
+    "openshift.clusterquota.object_count.hard": "recommended",
+    "openshift.clusterquota.object_count.used": "recommended",
+    "openshift.clusterquota.persistentvolumeclaim_count.hard": "recommended",
+    "openshift.clusterquota.persistentvolumeclaim_count.used": "recommended",
+    "openshift.clusterquota.storage.request.hard": "recommended",
+    "openshift.clusterquota.storage.request.used": "recommended",
+    "otel.sdk.exporter.log.exported": "recommended",
+    "otel.sdk.exporter.log.inflight": "recommended",
+    "otel.sdk.exporter.metric_data_point.exported": "recommended",
+    "otel.sdk.exporter.metric_data_point.inflight": "recommended",
+    "otel.sdk.exporter.operation.duration": "recommended",
+    "otel.sdk.exporter.span.exported": "recommended",
+    "otel.sdk.exporter.span.inflight": "recommended",
+    "otel.sdk.log.created": "recommended",
+    "otel.sdk.metric_reader.collection.duration": "recommended",
+    "otel.sdk.processor.log.processed": "recommended",
+    "otel.sdk.processor.log.queue.capacity": "recommended",
+    "otel.sdk.processor.log.queue.size": "recommended",
+    "otel.sdk.processor.span.processed": "recommended",
+    "otel.sdk.processor.span.queue.capacity": "recommended",
+    "otel.sdk.processor.span.queue.size": "recommended",
+    "otel.sdk.span.live": "recommended",
+    "otel.sdk.span.started": "recommended",
+    "process.context_switches": "recommended",
+    "process.cpu.time": "recommended",
+    "process.cpu.utilization": "opt_in",
+    "process.disk.io": "recommended",
+    "process.disk.operations": "recommended",
+    "process.memory.usage": "recommended",
+    "process.memory.utilization": "opt_in",
+    "process.memory.virtual": "recommended",
+    "process.network.io": "recommended",
+    "process.paging.faults": "recommended",
+    "process.signals_pending": "opt_in",
+    "process.thread.count": "recommended",
+    "process.unix.file_descriptor.count": "recommended",
+    "process.uptime": "recommended",
+    "process.windows.handle.count": "recommended",
+    "rpc.client.call.duration": "recommended",
+    "rpc.server.call.duration": "recommended",
+    "signalr.server.active_connections": "recommended",
+    "signalr.server.connection.duration": "recommended",
+    "system.cpu.frequency": "recommended",
+    "system.cpu.logical.count": "recommended",
+    "system.cpu.physical.count": "recommended",
+    "system.cpu.time": "recommended",
+    "system.cpu.utilization": "opt_in",
+    "system.disk.io": "recommended",
+    "system.disk.io_time": "recommended",
+    "system.disk.limit": "opt_in",
+    "system.disk.merged": "recommended",
+    "system.disk.operation_time": "recommended",
+    "system.disk.operations": "recommended",
+    "system.filesystem.limit": "opt_in",
+    "system.filesystem.lock.count": "recommended",
+    "system.filesystem.usage": "recommended",
+    "system.filesystem.utilization": "recommended",
+    "system.memory.limit": "opt_in",
+    "system.memory.linux.available": "recommended",
+    "system.memory.linux.hugepages.limit": "recommended",
+    "system.memory.linux.hugepages.page_size": "recommended",
+    "system.memory.linux.hugepages.reserved": "recommended",
+    "system.memory.linux.hugepages.surplus": "recommended",
+    "system.memory.linux.hugepages.usage": "recommended",
+    "system.memory.linux.hugepages.utilization": "recommended",
+    "system.memory.linux.shared": "opt_in",
+    "system.memory.linux.slab.usage": "recommended",
+    "system.memory.usage": "recommended",
+    "system.memory.utilization": "recommended",
+    "system.network.connection.count": "recommended",
+    "system.network.errors": "recommended",
+    "system.network.io": "recommended",
+    "system.network.packet.count": "recommended",
+    "system.network.packet.dropped": "recommended",
+    "system.paging.faults": "recommended",
+    "system.paging.operations": "recommended",
+    "system.paging.usage": "recommended",
+    "system.paging.utilization": "recommended",
+    "system.process.count": "recommended",
+    "system.process.created": "recommended",
+    "system.process.limit": "recommended",
+    "system.uptime": "recommended",
+    "v8js.gc.duration": "recommended",
+    "v8js.memory.heap.space.available_size": "recommended",
+    "v8js.memory.heap.space.physical_size": "recommended",
+    "v8js.memory.heap.space.size": "recommended",
+    "v8js.memory.heap.used": "recommended",
+    "v8js.resource.active": "recommended",
+    "vcs.change.count": "recommended",
+    "vcs.change.duration": "recommended",
+    "vcs.change.time_to_approval": "recommended",
+    "vcs.change.time_to_merge": "recommended",
+    "vcs.contributor.count": "opt_in",
+    "vcs.ref.count": "recommended",
+    "vcs.ref.lines_delta": "recommended",
+    "vcs.ref.revisions_delta": "recommended",
+    "vcs.ref.time": "recommended",
+    "vcs.repository.count": "recommended"
+  },
+  "details": {
+    "aspnetcore.authentication.authenticate.duration": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "aspnetcore.authentication.result",
+          "requirement_level": "required"
+        },
+        {
+          "name": "aspnetcore.authentication.scheme",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "error.type",
+          "requirement_level": "conditionally_required"
+        }
+      ]
+    },
+    "aspnetcore.authentication.challenges": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "aspnetcore.authentication.scheme",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "error.type",
+          "requirement_level": "conditionally_required"
+        }
+      ]
+    },
+    "aspnetcore.authentication.forbids": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "aspnetcore.authentication.scheme",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "error.type",
+          "requirement_level": "conditionally_required"
+        }
+      ]
+    },
+    "aspnetcore.authentication.sign_ins": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "aspnetcore.authentication.scheme",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "error.type",
+          "requirement_level": "conditionally_required"
+        }
+      ]
+    },
+    "aspnetcore.authentication.sign_outs": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "aspnetcore.authentication.scheme",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "error.type",
+          "requirement_level": "conditionally_required"
+        }
+      ]
+    },
+    "aspnetcore.authorization.attempts": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "aspnetcore.user.is_authenticated",
+          "requirement_level": "required"
+        },
+        {
+          "name": "aspnetcore.authorization.policy",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "aspnetcore.authorization.result",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "error.type",
+          "requirement_level": "conditionally_required"
+        }
+      ]
+    },
+    "aspnetcore.diagnostics.exceptions": {
+      "stability": "stable",
+      "attributes": [
+        {
+          "name": "aspnetcore.diagnostics.exception.result",
+          "requirement_level": "required"
+        },
+        {
+          "name": "error.type",
+          "requirement_level": "required"
+        },
+        {
+          "name": "aspnetcore.diagnostics.handler.type",
+          "requirement_level": "conditionally_required"
+        }
+      ]
+    },
+    "aspnetcore.identity.sign_in.authenticate.duration": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "aspnetcore.authentication.scheme",
+          "requirement_level": "required"
+        },
+        {
+          "name": "aspnetcore.identity.sign_in.type",
+          "requirement_level": "required"
+        },
+        {
+          "name": "aspnetcore.identity.user_type",
+          "requirement_level": "required"
+        },
+        {
+          "name": "aspnetcore.identity.sign_in.result",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "aspnetcore.sign_in.is_persistent",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "error.type",
+          "requirement_level": "conditionally_required"
+        }
+      ]
+    },
+    "aspnetcore.identity.sign_in.check_password_attempts": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "aspnetcore.identity.user_type",
+          "requirement_level": "required"
+        },
+        {
+          "name": "aspnetcore.identity.sign_in.result",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "error.type",
+          "requirement_level": "conditionally_required"
+        }
+      ]
+    },
+    "aspnetcore.identity.sign_in.sign_ins": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "aspnetcore.authentication.scheme",
+          "requirement_level": "required"
+        },
+        {
+          "name": "aspnetcore.identity.user_type",
+          "requirement_level": "required"
+        },
+        {
+          "name": "aspnetcore.sign_in.is_persistent",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "error.type",
+          "requirement_level": "conditionally_required"
+        }
+      ]
+    },
+    "aspnetcore.identity.sign_in.sign_outs": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "aspnetcore.authentication.scheme",
+          "requirement_level": "required"
+        },
+        {
+          "name": "aspnetcore.identity.user_type",
+          "requirement_level": "required"
+        },
+        {
+          "name": "error.type",
+          "requirement_level": "conditionally_required"
+        }
+      ]
+    },
+    "aspnetcore.identity.sign_in.two_factor_clients_forgotten": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "aspnetcore.authentication.scheme",
+          "requirement_level": "required"
+        },
+        {
+          "name": "aspnetcore.identity.user_type",
+          "requirement_level": "required"
+        },
+        {
+          "name": "error.type",
+          "requirement_level": "conditionally_required"
+        }
+      ]
+    },
+    "aspnetcore.identity.sign_in.two_factor_clients_remembered": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "aspnetcore.authentication.scheme",
+          "requirement_level": "required"
+        },
+        {
+          "name": "aspnetcore.identity.user_type",
+          "requirement_level": "required"
+        },
+        {
+          "name": "error.type",
+          "requirement_level": "conditionally_required"
+        }
+      ]
+    },
+    "aspnetcore.identity.user.check_password_attempts": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "aspnetcore.identity.user_type",
+          "requirement_level": "required"
+        },
+        {
+          "name": "aspnetcore.identity.password_check_result",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "error.type",
+          "requirement_level": "conditionally_required"
+        }
+      ]
+    },
+    "aspnetcore.identity.user.create.duration": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "aspnetcore.identity.user_type",
+          "requirement_level": "required"
+        },
+        {
+          "name": "aspnetcore.identity.error_code",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "aspnetcore.identity.result",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "error.type",
+          "requirement_level": "conditionally_required"
+        }
+      ]
+    },
+    "aspnetcore.identity.user.delete.duration": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "aspnetcore.identity.user_type",
+          "requirement_level": "required"
+        },
+        {
+          "name": "aspnetcore.identity.error_code",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "aspnetcore.identity.result",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "error.type",
+          "requirement_level": "conditionally_required"
+        }
+      ]
+    },
+    "aspnetcore.identity.user.generated_tokens": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "aspnetcore.identity.token_purpose",
+          "requirement_level": "required"
+        },
+        {
+          "name": "aspnetcore.identity.user_type",
+          "requirement_level": "required"
+        },
+        {
+          "name": "error.type",
+          "requirement_level": "conditionally_required"
+        }
+      ]
+    },
+    "aspnetcore.identity.user.update.duration": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "aspnetcore.identity.user.update_type",
+          "requirement_level": "required"
+        },
+        {
+          "name": "aspnetcore.identity.user_type",
+          "requirement_level": "required"
+        },
+        {
+          "name": "aspnetcore.identity.error_code",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "aspnetcore.identity.result",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "error.type",
+          "requirement_level": "conditionally_required"
+        }
+      ]
+    },
+    "aspnetcore.identity.user.verify_token_attempts": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "aspnetcore.identity.token_purpose",
+          "requirement_level": "required"
+        },
+        {
+          "name": "aspnetcore.identity.user_type",
+          "requirement_level": "required"
+        },
+        {
+          "name": "aspnetcore.identity.token_verified",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "error.type",
+          "requirement_level": "conditionally_required"
+        }
+      ]
+    },
+    "aspnetcore.memory_pool.allocated": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "aspnetcore.memory_pool.owner",
+          "requirement_level": "conditionally_required"
+        }
+      ]
+    },
+    "aspnetcore.memory_pool.evicted": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "aspnetcore.memory_pool.owner",
+          "requirement_level": "conditionally_required"
+        }
+      ]
+    },
+    "aspnetcore.memory_pool.pooled": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "aspnetcore.memory_pool.owner",
+          "requirement_level": "conditionally_required"
+        }
+      ]
+    },
+    "aspnetcore.memory_pool.rented": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "aspnetcore.memory_pool.owner",
+          "requirement_level": "conditionally_required"
+        }
+      ]
+    },
+    "aspnetcore.rate_limiting.active_request_leases": {
+      "stability": "stable",
+      "attributes": [
+        {
+          "name": "aspnetcore.rate_limiting.policy",
+          "requirement_level": "conditionally_required"
+        }
+      ]
+    },
+    "aspnetcore.rate_limiting.queued_requests": {
+      "stability": "stable",
+      "attributes": [
+        {
+          "name": "aspnetcore.rate_limiting.policy",
+          "requirement_level": "conditionally_required"
+        }
+      ]
+    },
+    "aspnetcore.rate_limiting.request.time_in_queue": {
+      "stability": "stable",
+      "attributes": [
+        {
+          "name": "aspnetcore.rate_limiting.result",
+          "requirement_level": "required"
+        },
+        {
+          "name": "aspnetcore.rate_limiting.policy",
+          "requirement_level": "conditionally_required"
+        }
+      ]
+    },
+    "aspnetcore.rate_limiting.request_lease.duration": {
+      "stability": "stable",
+      "attributes": [
+        {
+          "name": "aspnetcore.rate_limiting.policy",
+          "requirement_level": "conditionally_required"
+        }
+      ]
+    },
+    "aspnetcore.rate_limiting.requests": {
+      "stability": "stable",
+      "attributes": [
+        {
+          "name": "aspnetcore.rate_limiting.result",
+          "requirement_level": "required"
+        },
+        {
+          "name": "aspnetcore.rate_limiting.policy",
+          "requirement_level": "conditionally_required"
+        }
+      ]
+    },
+    "aspnetcore.routing.match_attempts": {
+      "stability": "stable",
+      "attributes": [
+        {
+          "name": "aspnetcore.routing.match_status",
+          "requirement_level": "required"
+        },
+        {
+          "name": "aspnetcore.routing.is_fallback",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "http.route",
+          "requirement_level": "conditionally_required"
+        }
+      ]
+    },
+    "cicd.pipeline.run.active": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "cicd.pipeline.name",
+          "requirement_level": "required"
+        },
+        {
+          "name": "cicd.pipeline.run.state",
+          "requirement_level": "required"
+        }
+      ]
+    },
+    "cicd.pipeline.run.duration": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "cicd.pipeline.name",
+          "requirement_level": "required"
+        },
+        {
+          "name": "cicd.pipeline.run.state",
+          "requirement_level": "required"
+        },
+        {
+          "name": "cicd.pipeline.result",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "error.type",
+          "requirement_level": "conditionally_required"
+        }
+      ]
+    },
+    "cicd.pipeline.run.errors": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "cicd.pipeline.name",
+          "requirement_level": "required"
+        },
+        {
+          "name": "error.type",
+          "requirement_level": "required"
+        }
+      ]
+    },
+    "cicd.system.errors": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "cicd.system.component",
+          "requirement_level": "required"
+        },
+        {
+          "name": "error.type",
+          "requirement_level": "required"
+        }
+      ]
+    },
+    "cicd.worker.count": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "cicd.worker.state",
+          "requirement_level": "required"
+        }
+      ]
+    },
+    "container.cpu.time": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "cpu.mode",
+          "requirement_level": "conditionally_required"
+        }
+      ]
+    },
+    "container.cpu.usage": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "cpu.mode",
+          "requirement_level": "conditionally_required"
+        }
+      ]
+    },
+    "container.disk.io": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "disk.io.direction",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "system.device",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "container.filesystem.available": {
+      "stability": "development",
+      "attributes": []
+    },
+    "container.filesystem.capacity": {
+      "stability": "development",
+      "attributes": []
+    },
+    "container.filesystem.usage": {
+      "stability": "development",
+      "attributes": []
+    },
+    "container.memory.available": {
+      "stability": "development",
+      "attributes": []
+    },
+    "container.memory.rss": {
+      "stability": "development",
+      "attributes": []
+    },
+    "container.memory.usage": {
+      "stability": "development",
+      "attributes": []
+    },
+    "container.memory.working_set": {
+      "stability": "development",
+      "attributes": []
+    },
+    "container.network.io": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "network.interface.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "network.io.direction",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "container.paging.faults": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "system.paging.fault.type",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "container.uptime": {
+      "stability": "development",
+      "attributes": []
+    },
+    "cpython.gc.collected_objects": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "cpython.gc.generation",
+          "requirement_level": "required"
+        }
+      ]
+    },
+    "cpython.gc.collections": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "cpython.gc.generation",
+          "requirement_level": "required"
+        }
+      ]
+    },
+    "cpython.gc.uncollectable_objects": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "cpython.gc.generation",
+          "requirement_level": "required"
+        }
+      ]
+    },
+    "db.client.connection.count": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "db.client.connection.pool.name",
+          "requirement_level": "required"
+        },
+        {
+          "name": "db.client.connection.state",
+          "requirement_level": "required"
+        }
+      ]
+    },
+    "db.client.connection.create_time": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "db.client.connection.pool.name",
+          "requirement_level": "required"
+        }
+      ]
+    },
+    "db.client.connection.idle.max": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "db.client.connection.pool.name",
+          "requirement_level": "required"
+        }
+      ]
+    },
+    "db.client.connection.idle.min": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "db.client.connection.pool.name",
+          "requirement_level": "required"
+        }
+      ]
+    },
+    "db.client.connection.limit": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "db.client.connection.pool.name",
+          "requirement_level": "required"
+        }
+      ]
+    },
+    "db.client.connection.pending_requests": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "db.client.connection.pool.name",
+          "requirement_level": "required"
+        }
+      ]
+    },
+    "db.client.connection.timeouts": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "db.client.connection.pool.name",
+          "requirement_level": "required"
+        }
+      ]
+    },
+    "db.client.connection.use_time": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "db.client.connection.pool.name",
+          "requirement_level": "required"
+        }
+      ]
+    },
+    "db.client.connection.wait_time": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "db.client.connection.pool.name",
+          "requirement_level": "required"
+        }
+      ]
+    },
+    "db.client.operation.duration": {
+      "stability": "stable",
+      "attributes": [
+        {
+          "name": "db.system.name",
+          "requirement_level": "required"
+        },
+        {
+          "name": "db.collection.name",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "db.namespace",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "db.operation.name",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "db.response.status_code",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "error.type",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "server.port",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "db.query.summary",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "db.stored_procedure.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "network.peer.address",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "network.peer.port",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "server.address",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "db.query.text",
+          "requirement_level": "opt_in"
+        }
+      ]
+    },
+    "db.client.response.returned_rows": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "db.system.name",
+          "requirement_level": "required"
+        },
+        {
+          "name": "db.collection.name",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "db.namespace",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "db.operation.name",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "db.response.status_code",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "error.type",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "server.port",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "db.query.summary",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "network.peer.address",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "network.peer.port",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "server.address",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "db.query.text",
+          "requirement_level": "opt_in"
+        }
+      ]
+    },
+    "dns.lookup.duration": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "dns.question.name",
+          "requirement_level": "required"
+        },
+        {
+          "name": "error.type",
+          "requirement_level": "conditionally_required"
+        }
+      ]
+    },
+    "dotnet.assembly.count": {
+      "stability": "stable",
+      "attributes": []
+    },
+    "dotnet.exceptions": {
+      "stability": "stable",
+      "attributes": [
+        {
+          "name": "error.type",
+          "requirement_level": "required"
+        }
+      ]
+    },
+    "dotnet.gc.collections": {
+      "stability": "stable",
+      "attributes": [
+        {
+          "name": "dotnet.gc.heap.generation",
+          "requirement_level": "required"
+        }
+      ]
+    },
+    "dotnet.gc.heap.total_allocated": {
+      "stability": "stable",
+      "attributes": []
+    },
+    "dotnet.gc.last_collection.heap.fragmentation.size": {
+      "stability": "stable",
+      "attributes": [
+        {
+          "name": "dotnet.gc.heap.generation",
+          "requirement_level": "required"
+        }
+      ]
+    },
+    "dotnet.gc.last_collection.heap.size": {
+      "stability": "stable",
+      "attributes": [
+        {
+          "name": "dotnet.gc.heap.generation",
+          "requirement_level": "required"
+        }
+      ]
+    },
+    "dotnet.gc.last_collection.memory.committed_size": {
+      "stability": "stable",
+      "attributes": []
+    },
+    "dotnet.gc.pause.time": {
+      "stability": "stable",
+      "attributes": []
+    },
+    "dotnet.jit.compilation.time": {
+      "stability": "stable",
+      "attributes": []
+    },
+    "dotnet.jit.compiled_il.size": {
+      "stability": "stable",
+      "attributes": []
+    },
+    "dotnet.jit.compiled_methods": {
+      "stability": "stable",
+      "attributes": []
+    },
+    "dotnet.monitor.lock_contentions": {
+      "stability": "stable",
+      "attributes": []
+    },
+    "dotnet.process.cpu.count": {
+      "stability": "stable",
+      "attributes": []
+    },
+    "dotnet.process.cpu.time": {
+      "stability": "stable",
+      "attributes": [
+        {
+          "name": "cpu.mode",
+          "requirement_level": "required"
+        }
+      ]
+    },
+    "dotnet.process.memory.working_set": {
+      "stability": "stable",
+      "attributes": []
+    },
+    "dotnet.thread_pool.queue.length": {
+      "stability": "stable",
+      "attributes": []
+    },
+    "dotnet.thread_pool.thread.count": {
+      "stability": "stable",
+      "attributes": []
+    },
+    "dotnet.thread_pool.work_item.count": {
+      "stability": "stable",
+      "attributes": []
+    },
+    "dotnet.timer.count": {
+      "stability": "stable",
+      "attributes": []
+    },
+    "faas.coldstarts": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "faas.trigger",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "faas.cpu_usage": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "faas.trigger",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "faas.errors": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "faas.trigger",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "faas.init_duration": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "faas.trigger",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "faas.invocations": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "faas.trigger",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "faas.invoke_duration": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "faas.trigger",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "faas.mem_usage": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "faas.trigger",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "faas.net_io": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "faas.trigger",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "faas.timeouts": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "faas.trigger",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "go.config.gogc": {
+      "stability": "development",
+      "attributes": []
+    },
+    "go.cpu.time": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "go.cpu.state",
+          "requirement_level": "required"
+        },
+        {
+          "name": "go.cpu.detailed_state",
+          "requirement_level": "opt_in"
+        }
+      ]
+    },
+    "go.goroutine.count": {
+      "stability": "development",
+      "attributes": []
+    },
+    "go.memory.allocated": {
+      "stability": "development",
+      "attributes": []
+    },
+    "go.memory.allocations": {
+      "stability": "development",
+      "attributes": []
+    },
+    "go.memory.gc.cycles": {
+      "stability": "development",
+      "attributes": []
+    },
+    "go.memory.gc.goal": {
+      "stability": "development",
+      "attributes": []
+    },
+    "go.memory.gc.pause.duration": {
+      "stability": "development",
+      "attributes": []
+    },
+    "go.memory.limit": {
+      "stability": "development",
+      "attributes": []
+    },
+    "go.memory.used": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "go.memory.type",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "go.memory.detailed_type",
+          "requirement_level": "opt_in"
+        }
+      ]
+    },
+    "go.processor.limit": {
+      "stability": "development",
+      "attributes": []
+    },
+    "go.schedule.duration": {
+      "stability": "development",
+      "attributes": []
+    },
+    "http.client.active_requests": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "server.address",
+          "requirement_level": "required"
+        },
+        {
+          "name": "server.port",
+          "requirement_level": "required"
+        },
+        {
+          "name": "url.template",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "http.request.method",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "url.scheme",
+          "requirement_level": "opt_in"
+        }
+      ]
+    },
+    "http.client.connection.duration": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "server.address",
+          "requirement_level": "required"
+        },
+        {
+          "name": "server.port",
+          "requirement_level": "required"
+        },
+        {
+          "name": "network.protocol.version",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "network.peer.address",
+          "requirement_level": "opt_in"
+        },
+        {
+          "name": "url.scheme",
+          "requirement_level": "opt_in"
+        }
+      ]
+    },
+    "http.client.open_connections": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "http.connection.state",
+          "requirement_level": "required"
+        },
+        {
+          "name": "server.address",
+          "requirement_level": "required"
+        },
+        {
+          "name": "server.port",
+          "requirement_level": "required"
+        },
+        {
+          "name": "network.protocol.version",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "network.peer.address",
+          "requirement_level": "opt_in"
+        },
+        {
+          "name": "url.scheme",
+          "requirement_level": "opt_in"
+        }
+      ]
+    },
+    "http.client.request.body.size": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "http.request.method",
+          "requirement_level": "required"
+        },
+        {
+          "name": "server.address",
+          "requirement_level": "required"
+        },
+        {
+          "name": "server.port",
+          "requirement_level": "required"
+        },
+        {
+          "name": "error.type",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "http.response.status_code",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "network.protocol.name",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "url.template",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "network.protocol.version",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "url.scheme",
+          "requirement_level": "opt_in"
+        }
+      ]
+    },
+    "http.client.request.duration": {
+      "stability": "stable",
+      "attributes": [
+        {
+          "name": "http.request.method",
+          "requirement_level": "required"
+        },
+        {
+          "name": "server.address",
+          "requirement_level": "required"
+        },
+        {
+          "name": "server.port",
+          "requirement_level": "required"
+        },
+        {
+          "name": "error.type",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "http.response.status_code",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "network.protocol.name",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "network.protocol.version",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "url.scheme",
+          "requirement_level": "opt_in"
+        },
+        {
+          "name": "url.template",
+          "requirement_level": "opt_in"
+        }
+      ]
+    },
+    "http.client.request.time_in_queue": {
+      "stability": "development",
+      "attributes": []
+    },
+    "http.client.response.body.size": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "http.request.method",
+          "requirement_level": "required"
+        },
+        {
+          "name": "server.address",
+          "requirement_level": "required"
+        },
+        {
+          "name": "server.port",
+          "requirement_level": "required"
+        },
+        {
+          "name": "error.type",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "http.response.status_code",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "network.protocol.name",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "url.template",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "network.protocol.version",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "url.scheme",
+          "requirement_level": "opt_in"
+        }
+      ]
+    },
+    "http.server.active_requests": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "http.request.method",
+          "requirement_level": "required"
+        },
+        {
+          "name": "url.scheme",
+          "requirement_level": "required"
+        },
+        {
+          "name": "server.address",
+          "requirement_level": "opt_in"
+        },
+        {
+          "name": "server.port",
+          "requirement_level": "opt_in"
+        }
+      ]
+    },
+    "http.server.request.body.size": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "http.request.method",
+          "requirement_level": "required"
+        },
+        {
+          "name": "url.scheme",
+          "requirement_level": "required"
+        },
+        {
+          "name": "error.type",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "http.response.status_code",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "http.route",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "network.protocol.name",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "network.protocol.version",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "server.address",
+          "requirement_level": "opt_in"
+        },
+        {
+          "name": "server.port",
+          "requirement_level": "opt_in"
+        },
+        {
+          "name": "user_agent.synthetic.type",
+          "requirement_level": "opt_in"
+        }
+      ]
+    },
+    "http.server.request.duration": {
+      "stability": "stable",
+      "attributes": [
+        {
+          "name": "http.request.method",
+          "requirement_level": "required"
+        },
+        {
+          "name": "url.scheme",
+          "requirement_level": "required"
+        },
+        {
+          "name": "error.type",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "http.response.status_code",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "http.route",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "network.protocol.name",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "network.protocol.version",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "server.address",
+          "requirement_level": "opt_in"
+        },
+        {
+          "name": "server.port",
+          "requirement_level": "opt_in"
+        },
+        {
+          "name": "user_agent.synthetic.type",
+          "requirement_level": "opt_in"
+        }
+      ]
+    },
+    "http.server.response.body.size": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "http.request.method",
+          "requirement_level": "required"
+        },
+        {
+          "name": "url.scheme",
+          "requirement_level": "required"
+        },
+        {
+          "name": "error.type",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "http.response.status_code",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "http.route",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "network.protocol.name",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "network.protocol.version",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "server.address",
+          "requirement_level": "opt_in"
+        },
+        {
+          "name": "server.port",
+          "requirement_level": "opt_in"
+        },
+        {
+          "name": "user_agent.synthetic.type",
+          "requirement_level": "opt_in"
+        }
+      ]
+    },
+    "jvm.buffer.count": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "jvm.buffer.pool.name",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "jvm.buffer.memory.limit": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "jvm.buffer.pool.name",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "jvm.buffer.memory.used": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "jvm.buffer.pool.name",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "jvm.class.count": {
+      "stability": "stable",
+      "attributes": []
+    },
+    "jvm.class.loaded": {
+      "stability": "stable",
+      "attributes": []
+    },
+    "jvm.class.unloaded": {
+      "stability": "stable",
+      "attributes": []
+    },
+    "jvm.cpu.count": {
+      "stability": "stable",
+      "attributes": []
+    },
+    "jvm.cpu.recent_utilization": {
+      "stability": "stable",
+      "attributes": []
+    },
+    "jvm.cpu.time": {
+      "stability": "stable",
+      "attributes": []
+    },
+    "jvm.file_descriptor.count": {
+      "stability": "development",
+      "attributes": []
+    },
+    "jvm.file_descriptor.limit": {
+      "stability": "development",
+      "attributes": []
+    },
+    "jvm.gc.duration": {
+      "stability": "stable",
+      "attributes": [
+        {
+          "name": "jvm.gc.action",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "jvm.gc.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "jvm.gc.cause",
+          "requirement_level": "opt_in"
+        }
+      ]
+    },
+    "jvm.memory.committed": {
+      "stability": "stable",
+      "attributes": [
+        {
+          "name": "jvm.memory.pool.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "jvm.memory.type",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "jvm.memory.init": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "jvm.memory.pool.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "jvm.memory.type",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "jvm.memory.limit": {
+      "stability": "stable",
+      "attributes": [
+        {
+          "name": "jvm.memory.pool.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "jvm.memory.type",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "jvm.memory.used": {
+      "stability": "stable",
+      "attributes": [
+        {
+          "name": "jvm.memory.pool.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "jvm.memory.type",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "jvm.memory.used_after_last_gc": {
+      "stability": "stable",
+      "attributes": [
+        {
+          "name": "jvm.memory.pool.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "jvm.memory.type",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "jvm.system.cpu.load_1m": {
+      "stability": "development",
+      "attributes": []
+    },
+    "jvm.system.cpu.utilization": {
+      "stability": "development",
+      "attributes": []
+    },
+    "jvm.thread.count": {
+      "stability": "stable",
+      "attributes": [
+        {
+          "name": "jvm.thread.daemon",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "jvm.thread.state",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "k8s.container.cpu.limit.current": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.container.cpu.limit.desired": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.container.cpu.limit.utilization": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.container.cpu.request.current": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.container.cpu.request.desired": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.container.cpu.request.utilization": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.container.ephemeral_storage.limit": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.container.ephemeral_storage.request": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.container.ephemeral_storage.usage": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "k8s.container.ephemeral_storage.fs_type",
+          "requirement_level": "required"
+        }
+      ]
+    },
+    "k8s.container.memory.limit.current": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.container.memory.limit.desired": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.container.memory.request.current": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.container.memory.request.desired": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.container.ready": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.container.restart.count": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.container.status.reason": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "k8s.container.status.reason",
+          "requirement_level": "required"
+        }
+      ]
+    },
+    "k8s.container.status.state": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "k8s.container.status.state",
+          "requirement_level": "required"
+        }
+      ]
+    },
+    "k8s.container.storage.limit": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.container.storage.request": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.cronjob.job.active": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.daemonset.node.current_scheduled": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.daemonset.node.desired_scheduled": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.daemonset.node.misscheduled": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.daemonset.node.ready": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.deployment.pod.available": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.deployment.pod.desired": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.hpa.metric.target.cpu.average_utilization": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "k8s.container.name",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "k8s.hpa.metric.type",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "k8s.hpa.metric.target.cpu.average_value": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "k8s.container.name",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "k8s.hpa.metric.type",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "k8s.hpa.metric.target.cpu.value": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "k8s.container.name",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "k8s.hpa.metric.type",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "k8s.hpa.pod.current": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.hpa.pod.desired": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.hpa.pod.max": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.hpa.pod.min": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.job.pod.active": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.job.pod.desired_successful": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.job.pod.failed": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.job.pod.max_parallel": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.job.pod.successful": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.namespace.phase": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "k8s.namespace.phase",
+          "requirement_level": "required"
+        }
+      ]
+    },
+    "k8s.node.condition.status": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "k8s.node.condition.status",
+          "requirement_level": "required"
+        },
+        {
+          "name": "k8s.node.condition.type",
+          "requirement_level": "required"
+        }
+      ]
+    },
+    "k8s.node.cpu.allocatable": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.node.cpu.time": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.node.cpu.usage": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.node.ephemeral_storage.allocatable": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.node.filesystem.available": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.node.filesystem.capacity": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.node.filesystem.inode.count": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.node.filesystem.inode.free": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.node.filesystem.usage": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.node.memory.allocatable": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.node.memory.available": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.node.memory.rss": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.node.memory.usage": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.node.memory.working_set": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.node.network.errors": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "network.interface.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "network.io.direction",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "k8s.node.network.io": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "network.interface.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "network.io.direction",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "k8s.node.paging.faults": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "system.paging.fault.type",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "k8s.node.pod.allocatable": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.node.system_container.cpu.time": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.node.system_container.cpu.usage": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.node.system_container.memory.usage": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.node.system_container.memory.working_set": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "k8s.node.system_container.name",
+          "requirement_level": "required"
+        }
+      ]
+    },
+    "k8s.node.uptime": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.persistentvolume.status.phase": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "k8s.persistentvolume.status.phase",
+          "requirement_level": "required"
+        }
+      ]
+    },
+    "k8s.persistentvolume.storage.capacity": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.persistentvolumeclaim.status.phase": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "k8s.persistentvolumeclaim.status.phase",
+          "requirement_level": "required"
+        }
+      ]
+    },
+    "k8s.persistentvolumeclaim.storage.capacity": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.persistentvolumeclaim.storage.request": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.pod.cpu.time": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.pod.cpu.usage": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.pod.filesystem.available": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.pod.filesystem.capacity": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.pod.filesystem.usage": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.pod.memory.available": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.pod.memory.rss": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.pod.memory.usage": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.pod.memory.working_set": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.pod.network.errors": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "network.interface.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "network.io.direction",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "k8s.pod.network.io": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "network.interface.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "network.io.direction",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "k8s.pod.paging.faults": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "system.paging.fault.type",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "k8s.pod.status.phase": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "k8s.pod.status.phase",
+          "requirement_level": "required"
+        }
+      ]
+    },
+    "k8s.pod.status.reason": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "k8s.pod.status.reason",
+          "requirement_level": "required"
+        }
+      ]
+    },
+    "k8s.pod.uptime": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.pod.volume.available": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "k8s.volume.name",
+          "requirement_level": "required"
+        },
+        {
+          "name": "k8s.volume.type",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "k8s.pod.volume.capacity": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "k8s.volume.name",
+          "requirement_level": "required"
+        },
+        {
+          "name": "k8s.volume.type",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "k8s.pod.volume.inode.count": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "k8s.volume.name",
+          "requirement_level": "required"
+        },
+        {
+          "name": "k8s.volume.type",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "k8s.pod.volume.inode.free": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "k8s.volume.name",
+          "requirement_level": "required"
+        },
+        {
+          "name": "k8s.volume.type",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "k8s.pod.volume.inode.used": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "k8s.volume.name",
+          "requirement_level": "required"
+        },
+        {
+          "name": "k8s.volume.type",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "k8s.pod.volume.usage": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "k8s.volume.name",
+          "requirement_level": "required"
+        },
+        {
+          "name": "k8s.volume.type",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "k8s.replicaset.pod.available": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.replicaset.pod.desired": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.replicationcontroller.pod.available": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.replicationcontroller.pod.desired": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.resourcequota.cpu.limit.hard": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.resourcequota.cpu.limit.used": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.resourcequota.cpu.request.hard": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.resourcequota.cpu.request.used": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.resourcequota.ephemeral_storage.limit.hard": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.resourcequota.ephemeral_storage.limit.used": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.resourcequota.ephemeral_storage.request.hard": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.resourcequota.ephemeral_storage.request.used": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.resourcequota.hugepage_count.request.hard": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "k8s.hugepage.size",
+          "requirement_level": "required"
+        }
+      ]
+    },
+    "k8s.resourcequota.hugepage_count.request.used": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "k8s.hugepage.size",
+          "requirement_level": "required"
+        }
+      ]
+    },
+    "k8s.resourcequota.memory.limit.hard": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.resourcequota.memory.limit.used": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.resourcequota.memory.request.hard": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.resourcequota.memory.request.used": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.resourcequota.object_count.hard": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "k8s.resourcequota.resource_name",
+          "requirement_level": "required"
+        }
+      ]
+    },
+    "k8s.resourcequota.object_count.used": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "k8s.resourcequota.resource_name",
+          "requirement_level": "required"
+        }
+      ]
+    },
+    "k8s.resourcequota.persistentvolumeclaim_count.hard": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "k8s.storageclass.name",
+          "requirement_level": "conditionally_required"
+        }
+      ]
+    },
+    "k8s.resourcequota.persistentvolumeclaim_count.used": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "k8s.storageclass.name",
+          "requirement_level": "conditionally_required"
+        }
+      ]
+    },
+    "k8s.resourcequota.storage.request.hard": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "k8s.storageclass.name",
+          "requirement_level": "conditionally_required"
+        }
+      ]
+    },
+    "k8s.resourcequota.storage.request.used": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "k8s.storageclass.name",
+          "requirement_level": "conditionally_required"
+        }
+      ]
+    },
+    "k8s.service.endpoint.count": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "k8s.service.endpoint.address_type",
+          "requirement_level": "required"
+        },
+        {
+          "name": "k8s.service.endpoint.condition",
+          "requirement_level": "required"
+        },
+        {
+          "name": "k8s.service.endpoint.zone",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "k8s.service.load_balancer.ingress.count": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.statefulset.pod.available": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.statefulset.pod.current": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.statefulset.pod.desired": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.statefulset.pod.ready": {
+      "stability": "development",
+      "attributes": []
+    },
+    "k8s.statefulset.pod.updated": {
+      "stability": "development",
+      "attributes": []
+    },
+    "kestrel.active_connections": {
+      "stability": "stable",
+      "attributes": [
+        {
+          "name": "network.transport",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "network.type",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "server.address",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "server.port",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "kestrel.active_tls_handshakes": {
+      "stability": "stable",
+      "attributes": [
+        {
+          "name": "network.transport",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "network.type",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "server.address",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "server.port",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "kestrel.connection.duration": {
+      "stability": "stable",
+      "attributes": [
+        {
+          "name": "error.type",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "network.protocol.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "network.protocol.version",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "network.transport",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "network.type",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "server.address",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "server.port",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "tls.protocol.version",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "kestrel.queued_connections": {
+      "stability": "stable",
+      "attributes": [
+        {
+          "name": "network.transport",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "network.type",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "server.address",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "server.port",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "kestrel.queued_requests": {
+      "stability": "stable",
+      "attributes": [
+        {
+          "name": "network.protocol.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "network.protocol.version",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "network.transport",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "network.type",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "server.address",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "server.port",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "kestrel.rejected_connections": {
+      "stability": "stable",
+      "attributes": [
+        {
+          "name": "network.transport",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "network.type",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "server.address",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "server.port",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "kestrel.tls_handshake.duration": {
+      "stability": "stable",
+      "attributes": [
+        {
+          "name": "error.type",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "network.transport",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "network.type",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "server.address",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "server.port",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "tls.protocol.version",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "kestrel.upgraded_connections": {
+      "stability": "stable",
+      "attributes": [
+        {
+          "name": "network.transport",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "network.type",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "server.address",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "server.port",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "messaging.client.consumed.messages": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "messaging.operation.name",
+          "requirement_level": "required"
+        },
+        {
+          "name": "messaging.system",
+          "requirement_level": "required"
+        },
+        {
+          "name": "error.type",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "messaging.consumer.group.name",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "messaging.destination.name",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "messaging.destination.subscription.name",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "messaging.destination.template",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "server.address",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "messaging.destination.partition.id",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "server.port",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "messaging.client.operation.duration": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "messaging.operation.name",
+          "requirement_level": "required"
+        },
+        {
+          "name": "messaging.system",
+          "requirement_level": "required"
+        },
+        {
+          "name": "error.type",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "messaging.consumer.group.name",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "messaging.destination.name",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "messaging.destination.subscription.name",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "messaging.destination.template",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "messaging.operation.type",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "server.address",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "messaging.destination.partition.id",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "server.port",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "messaging.client.sent.messages": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "messaging.operation.name",
+          "requirement_level": "required"
+        },
+        {
+          "name": "messaging.system",
+          "requirement_level": "required"
+        },
+        {
+          "name": "error.type",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "messaging.destination.name",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "messaging.destination.template",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "server.address",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "messaging.destination.partition.id",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "server.port",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "messaging.process.duration": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "messaging.operation.name",
+          "requirement_level": "required"
+        },
+        {
+          "name": "messaging.system",
+          "requirement_level": "required"
+        },
+        {
+          "name": "error.type",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "messaging.consumer.group.name",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "messaging.destination.name",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "messaging.destination.subscription.name",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "messaging.destination.template",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "server.address",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "messaging.destination.partition.id",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "server.port",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "nfs.client.net.count": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "network.transport",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "nfs.client.net.tcp.connection.accepted": {
+      "stability": "development",
+      "attributes": []
+    },
+    "nfs.client.operation.count": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "nfs.operation.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "onc_rpc.version",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "nfs.client.procedure.count": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "onc_rpc.procedure.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "onc_rpc.version",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "nfs.client.rpc.authrefresh.count": {
+      "stability": "development",
+      "attributes": []
+    },
+    "nfs.client.rpc.count": {
+      "stability": "development",
+      "attributes": []
+    },
+    "nfs.client.rpc.retransmit.count": {
+      "stability": "development",
+      "attributes": []
+    },
+    "nfs.server.fh.stale.count": {
+      "stability": "development",
+      "attributes": []
+    },
+    "nfs.server.io": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "network.io.direction",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "nfs.server.net.count": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "network.transport",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "nfs.server.net.tcp.connection.accepted": {
+      "stability": "development",
+      "attributes": []
+    },
+    "nfs.server.operation.count": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "nfs.operation.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "onc_rpc.version",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "nfs.server.procedure.count": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "onc_rpc.procedure.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "onc_rpc.version",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "nfs.server.repcache.requests": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "nfs.server.repcache.status",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "nfs.server.rpc.count": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "error.type",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "nfs.server.thread.count": {
+      "stability": "development",
+      "attributes": []
+    },
+    "nodejs.eventloop.delay.max": {
+      "stability": "development",
+      "attributes": []
+    },
+    "nodejs.eventloop.delay.mean": {
+      "stability": "development",
+      "attributes": []
+    },
+    "nodejs.eventloop.delay.min": {
+      "stability": "development",
+      "attributes": []
+    },
+    "nodejs.eventloop.delay.p50": {
+      "stability": "development",
+      "attributes": []
+    },
+    "nodejs.eventloop.delay.p90": {
+      "stability": "development",
+      "attributes": []
+    },
+    "nodejs.eventloop.delay.p99": {
+      "stability": "development",
+      "attributes": []
+    },
+    "nodejs.eventloop.delay.stddev": {
+      "stability": "development",
+      "attributes": []
+    },
+    "nodejs.eventloop.time": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "nodejs.eventloop.state",
+          "requirement_level": "required"
+        }
+      ]
+    },
+    "nodejs.eventloop.utilization": {
+      "stability": "development",
+      "attributes": []
+    },
+    "openshift.clusterquota.cpu.limit.hard": {
+      "stability": "development",
+      "attributes": []
+    },
+    "openshift.clusterquota.cpu.limit.used": {
+      "stability": "development",
+      "attributes": []
+    },
+    "openshift.clusterquota.cpu.request.hard": {
+      "stability": "development",
+      "attributes": []
+    },
+    "openshift.clusterquota.cpu.request.used": {
+      "stability": "development",
+      "attributes": []
+    },
+    "openshift.clusterquota.ephemeral_storage.limit.hard": {
+      "stability": "development",
+      "attributes": []
+    },
+    "openshift.clusterquota.ephemeral_storage.limit.used": {
+      "stability": "development",
+      "attributes": []
+    },
+    "openshift.clusterquota.ephemeral_storage.request.hard": {
+      "stability": "development",
+      "attributes": []
+    },
+    "openshift.clusterquota.ephemeral_storage.request.used": {
+      "stability": "development",
+      "attributes": []
+    },
+    "openshift.clusterquota.hugepage_count.request.hard": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "k8s.hugepage.size",
+          "requirement_level": "required"
+        }
+      ]
+    },
+    "openshift.clusterquota.hugepage_count.request.used": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "k8s.hugepage.size",
+          "requirement_level": "required"
+        }
+      ]
+    },
+    "openshift.clusterquota.memory.limit.hard": {
+      "stability": "development",
+      "attributes": []
+    },
+    "openshift.clusterquota.memory.limit.used": {
+      "stability": "development",
+      "attributes": []
+    },
+    "openshift.clusterquota.memory.request.hard": {
+      "stability": "development",
+      "attributes": []
+    },
+    "openshift.clusterquota.memory.request.used": {
+      "stability": "development",
+      "attributes": []
+    },
+    "openshift.clusterquota.object_count.hard": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "k8s.resourcequota.resource_name",
+          "requirement_level": "required"
+        }
+      ]
+    },
+    "openshift.clusterquota.object_count.used": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "k8s.resourcequota.resource_name",
+          "requirement_level": "required"
+        }
+      ]
+    },
+    "openshift.clusterquota.persistentvolumeclaim_count.hard": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "k8s.storageclass.name",
+          "requirement_level": "conditionally_required"
+        }
+      ]
+    },
+    "openshift.clusterquota.persistentvolumeclaim_count.used": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "k8s.storageclass.name",
+          "requirement_level": "conditionally_required"
+        }
+      ]
+    },
+    "openshift.clusterquota.storage.request.hard": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "k8s.storageclass.name",
+          "requirement_level": "conditionally_required"
+        }
+      ]
+    },
+    "openshift.clusterquota.storage.request.used": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "k8s.storageclass.name",
+          "requirement_level": "conditionally_required"
+        }
+      ]
+    },
+    "otel.sdk.exporter.log.exported": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "error.type",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "otel.component.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "otel.component.type",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "server.address",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "server.port",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "otel.sdk.exporter.log.inflight": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "otel.component.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "otel.component.type",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "server.address",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "server.port",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "otel.sdk.exporter.metric_data_point.exported": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "error.type",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "otel.component.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "otel.component.type",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "server.address",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "server.port",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "otel.sdk.exporter.metric_data_point.inflight": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "otel.component.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "otel.component.type",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "server.address",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "server.port",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "otel.sdk.exporter.operation.duration": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "error.type",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "http.response.status_code",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "otel.component.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "otel.component.type",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "rpc.status_code",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "server.address",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "server.port",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "otel.sdk.exporter.span.exported": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "error.type",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "otel.component.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "otel.component.type",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "server.address",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "server.port",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "otel.sdk.exporter.span.inflight": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "otel.component.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "otel.component.type",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "server.address",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "server.port",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "otel.sdk.log.created": {
+      "stability": "development",
+      "attributes": []
+    },
+    "otel.sdk.metric_reader.collection.duration": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "error.type",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "otel.component.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "otel.component.type",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "otel.sdk.processor.log.processed": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "error.type",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "otel.component.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "otel.component.type",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "otel.sdk.processor.log.queue.capacity": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "otel.component.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "otel.component.type",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "otel.sdk.processor.log.queue.size": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "otel.component.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "otel.component.type",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "otel.sdk.processor.span.processed": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "error.type",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "otel.component.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "otel.component.type",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "otel.sdk.processor.span.queue.capacity": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "otel.component.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "otel.component.type",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "otel.sdk.processor.span.queue.size": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "otel.component.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "otel.component.type",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "otel.sdk.span.live": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "otel.span.sampling_result",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "otel.sdk.span.started": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "otel.span.parent.origin",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "otel.span.sampling_result",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "process.context_switches": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "process.context_switch.type",
+          "requirement_level": "required"
+        }
+      ]
+    },
+    "process.cpu.time": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "cpu.mode",
+          "requirement_level": "required"
+        }
+      ]
+    },
+    "process.cpu.utilization": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "cpu.mode",
+          "requirement_level": "required"
+        }
+      ]
+    },
+    "process.disk.io": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "disk.io.direction",
+          "requirement_level": "required"
+        }
+      ]
+    },
+    "process.disk.operations": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "disk.io.direction",
+          "requirement_level": "required"
+        }
+      ]
+    },
+    "process.memory.usage": {
+      "stability": "development",
+      "attributes": []
+    },
+    "process.memory.utilization": {
+      "stability": "development",
+      "attributes": []
+    },
+    "process.memory.virtual": {
+      "stability": "development",
+      "attributes": []
+    },
+    "process.network.io": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "network.io.direction",
+          "requirement_level": "required"
+        }
+      ]
+    },
+    "process.paging.faults": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "system.paging.fault.type",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "process.signals_pending": {
+      "stability": "development",
+      "attributes": []
+    },
+    "process.thread.count": {
+      "stability": "development",
+      "attributes": []
+    },
+    "process.unix.file_descriptor.count": {
+      "stability": "development",
+      "attributes": []
+    },
+    "process.uptime": {
+      "stability": "development",
+      "attributes": []
+    },
+    "process.windows.handle.count": {
+      "stability": "development",
+      "attributes": []
+    },
+    "rpc.client.call.duration": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "rpc.system.name",
+          "requirement_level": "required"
+        },
+        {
+          "name": "error.type",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "rpc.method",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "rpc.status_code",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "server.address",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "server.port",
+          "requirement_level": "conditionally_required"
+        }
+      ]
+    },
+    "rpc.server.call.duration": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "rpc.system.name",
+          "requirement_level": "required"
+        },
+        {
+          "name": "error.type",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "rpc.method",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "rpc.status_code",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "server.address",
+          "requirement_level": "opt_in"
+        },
+        {
+          "name": "server.port",
+          "requirement_level": "opt_in"
+        }
+      ]
+    },
+    "signalr.server.active_connections": {
+      "stability": "stable",
+      "attributes": [
+        {
+          "name": "signalr.connection.status",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "signalr.transport",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "signalr.server.connection.duration": {
+      "stability": "stable",
+      "attributes": [
+        {
+          "name": "signalr.connection.status",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "signalr.transport",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "system.cpu.frequency": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "cpu.logical_number",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "system.cpu.logical.count": {
+      "stability": "development",
+      "attributes": []
+    },
+    "system.cpu.physical.count": {
+      "stability": "development",
+      "attributes": []
+    },
+    "system.cpu.time": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "cpu.mode",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "cpu.logical_number",
+          "requirement_level": "opt_in"
+        }
+      ]
+    },
+    "system.cpu.utilization": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "cpu.mode",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "cpu.logical_number",
+          "requirement_level": "opt_in"
+        }
+      ]
+    },
+    "system.disk.io": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "disk.io.direction",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "system.device",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "system.disk.io_time": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "system.device",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "system.disk.limit": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "system.device",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "system.disk.merged": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "disk.io.direction",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "system.device",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "system.disk.operation_time": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "disk.io.direction",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "system.device",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "system.disk.operations": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "disk.io.direction",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "system.device",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "system.filesystem.limit": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "system.device",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "system.filesystem.mode",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "system.filesystem.mountpoint",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "system.filesystem.type",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "system.filesystem.lock.count": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "file.lock.mechanism",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "file.lock.mode",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "file.lock.type",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "system.device",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "system.filesystem.usage": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "system.device",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "system.filesystem.mode",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "system.filesystem.mountpoint",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "system.filesystem.state",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "system.filesystem.type",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "system.filesystem.utilization": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "system.device",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "system.filesystem.mode",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "system.filesystem.mountpoint",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "system.filesystem.state",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "system.filesystem.type",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "system.memory.limit": {
+      "stability": "development",
+      "attributes": []
+    },
+    "system.memory.linux.available": {
+      "stability": "development",
+      "attributes": []
+    },
+    "system.memory.linux.hugepages.limit": {
+      "stability": "development",
+      "attributes": []
+    },
+    "system.memory.linux.hugepages.page_size": {
+      "stability": "development",
+      "attributes": []
+    },
+    "system.memory.linux.hugepages.reserved": {
+      "stability": "development",
+      "attributes": []
+    },
+    "system.memory.linux.hugepages.surplus": {
+      "stability": "development",
+      "attributes": []
+    },
+    "system.memory.linux.hugepages.usage": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "system.memory.linux.hugepages.state",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "system.memory.linux.hugepages.utilization": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "system.memory.linux.hugepages.state",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "system.memory.linux.shared": {
+      "stability": "development",
+      "attributes": []
+    },
+    "system.memory.linux.slab.usage": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "system.memory.linux.slab.state",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "system.memory.usage": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "system.memory.state",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "system.memory.utilization": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "system.memory.state",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "system.network.connection.count": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "network.connection.state",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "network.interface.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "network.transport",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "system.network.errors": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "network.interface.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "network.io.direction",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "system.network.io": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "network.interface.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "network.io.direction",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "system.network.packet.count": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "network.io.direction",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "system.device",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "system.network.packet.dropped": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "network.interface.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "network.io.direction",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "system.paging.faults": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "system.paging.fault.type",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "system.paging.operations": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "system.paging.direction",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "system.paging.fault.type",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "system.paging.usage": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "system.device",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "system.paging.state",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "system.paging.utilization": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "system.device",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "system.paging.state",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "system.process.count": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "process.state",
+          "requirement_level": "recommended"
+        }
+      ]
+    },
+    "system.process.created": {
+      "stability": "development",
+      "attributes": []
+    },
+    "system.process.limit": {
+      "stability": "development",
+      "attributes": []
+    },
+    "system.uptime": {
+      "stability": "development",
+      "attributes": []
+    },
+    "v8js.gc.duration": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "v8js.gc.type",
+          "requirement_level": "required"
+        }
+      ]
+    },
+    "v8js.memory.heap.space.available_size": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "v8js.heap.space.name",
+          "requirement_level": "required"
+        }
+      ]
+    },
+    "v8js.memory.heap.space.physical_size": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "v8js.heap.space.name",
+          "requirement_level": "required"
+        }
+      ]
+    },
+    "v8js.memory.heap.space.size": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "v8js.heap.space.name",
+          "requirement_level": "required"
+        }
+      ]
+    },
+    "v8js.memory.heap.used": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "v8js.heap.space.name",
+          "requirement_level": "required"
+        }
+      ]
+    },
+    "v8js.resource.active": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "v8js.resource.type",
+          "requirement_level": "required"
+        }
+      ]
+    },
+    "vcs.change.count": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "vcs.change.state",
+          "requirement_level": "required"
+        },
+        {
+          "name": "vcs.repository.url.full",
+          "requirement_level": "required"
+        },
+        {
+          "name": "vcs.owner.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "vcs.repository.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "vcs.provider.name",
+          "requirement_level": "opt_in"
+        }
+      ]
+    },
+    "vcs.change.duration": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "vcs.change.state",
+          "requirement_level": "required"
+        },
+        {
+          "name": "vcs.ref.head.name",
+          "requirement_level": "required"
+        },
+        {
+          "name": "vcs.repository.url.full",
+          "requirement_level": "required"
+        },
+        {
+          "name": "vcs.owner.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "vcs.repository.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "vcs.provider.name",
+          "requirement_level": "opt_in"
+        }
+      ]
+    },
+    "vcs.change.time_to_approval": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "vcs.ref.head.name",
+          "requirement_level": "required"
+        },
+        {
+          "name": "vcs.repository.url.full",
+          "requirement_level": "required"
+        },
+        {
+          "name": "vcs.owner.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "vcs.ref.base.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "vcs.repository.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "vcs.provider.name",
+          "requirement_level": "opt_in"
+        },
+        {
+          "name": "vcs.ref.base.revision",
+          "requirement_level": "opt_in"
+        },
+        {
+          "name": "vcs.ref.head.revision",
+          "requirement_level": "opt_in"
+        }
+      ]
+    },
+    "vcs.change.time_to_merge": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "vcs.ref.head.name",
+          "requirement_level": "required"
+        },
+        {
+          "name": "vcs.repository.url.full",
+          "requirement_level": "required"
+        },
+        {
+          "name": "vcs.owner.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "vcs.ref.base.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "vcs.repository.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "vcs.provider.name",
+          "requirement_level": "opt_in"
+        },
+        {
+          "name": "vcs.ref.base.revision",
+          "requirement_level": "opt_in"
+        },
+        {
+          "name": "vcs.ref.head.revision",
+          "requirement_level": "opt_in"
+        }
+      ]
+    },
+    "vcs.contributor.count": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "vcs.repository.url.full",
+          "requirement_level": "required"
+        },
+        {
+          "name": "vcs.owner.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "vcs.repository.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "vcs.provider.name",
+          "requirement_level": "opt_in"
+        }
+      ]
+    },
+    "vcs.ref.count": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "vcs.ref.type",
+          "requirement_level": "required"
+        },
+        {
+          "name": "vcs.repository.url.full",
+          "requirement_level": "required"
+        },
+        {
+          "name": "vcs.owner.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "vcs.repository.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "vcs.provider.name",
+          "requirement_level": "opt_in"
+        }
+      ]
+    },
+    "vcs.ref.lines_delta": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "vcs.line_change.type",
+          "requirement_level": "required"
+        },
+        {
+          "name": "vcs.ref.base.name",
+          "requirement_level": "required"
+        },
+        {
+          "name": "vcs.ref.base.type",
+          "requirement_level": "required"
+        },
+        {
+          "name": "vcs.ref.head.name",
+          "requirement_level": "required"
+        },
+        {
+          "name": "vcs.ref.head.type",
+          "requirement_level": "required"
+        },
+        {
+          "name": "vcs.repository.url.full",
+          "requirement_level": "required"
+        },
+        {
+          "name": "vcs.change.id",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "vcs.owner.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "vcs.repository.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "vcs.provider.name",
+          "requirement_level": "opt_in"
+        }
+      ]
+    },
+    "vcs.ref.revisions_delta": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "vcs.ref.base.name",
+          "requirement_level": "required"
+        },
+        {
+          "name": "vcs.ref.base.type",
+          "requirement_level": "required"
+        },
+        {
+          "name": "vcs.ref.head.name",
+          "requirement_level": "required"
+        },
+        {
+          "name": "vcs.ref.head.type",
+          "requirement_level": "required"
+        },
+        {
+          "name": "vcs.repository.url.full",
+          "requirement_level": "required"
+        },
+        {
+          "name": "vcs.revision_delta.direction",
+          "requirement_level": "required"
+        },
+        {
+          "name": "vcs.change.id",
+          "requirement_level": "conditionally_required"
+        },
+        {
+          "name": "vcs.owner.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "vcs.repository.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "vcs.provider.name",
+          "requirement_level": "opt_in"
+        }
+      ]
+    },
+    "vcs.ref.time": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "vcs.ref.head.name",
+          "requirement_level": "required"
+        },
+        {
+          "name": "vcs.ref.head.type",
+          "requirement_level": "required"
+        },
+        {
+          "name": "vcs.repository.url.full",
+          "requirement_level": "required"
+        },
+        {
+          "name": "vcs.owner.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "vcs.repository.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "vcs.provider.name",
+          "requirement_level": "opt_in"
+        }
+      ]
+    },
+    "vcs.repository.count": {
+      "stability": "development",
+      "attributes": [
+        {
+          "name": "vcs.owner.name",
+          "requirement_level": "recommended"
+        },
+        {
+          "name": "vcs.provider.name",
+          "requirement_level": "opt_in"
+        }
+      ]
+    }
+  }
+}

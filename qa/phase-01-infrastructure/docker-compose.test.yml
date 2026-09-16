@@ -1,0 +1,14 @@
+# Phase-01 QA stack.
+#
+# The phase under test IS the root docker-compose.yml (collector + weaver).
+# We include it verbatim so QA exercises the real stack, not a copy that could
+# drift. Relative paths inside the included file (./collector-config.yaml,
+# ./.weaver.toml, ./weaver-output) resolve against the repo root, which is where
+# that file lives.
+#
+# validate.js runs:
+#   docker compose -f docker-compose.test.yml up -d --wait
+#   docker compose -f docker-compose.test.yml down -v --remove-orphans
+# with UID/GID exported in the environment.
+include:
+  - ../../docker-compose.yml

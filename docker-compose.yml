@@ -1,0 +1,112 @@
+name: otel-semconv-checker
+
+# The backend stops/starts the weaver container per session. `docker start`
+# hands a restarted container a fresh IP, and the collector's gRPC exporter
+# pins the address it first resolved — so weaver is given a static IP and the
+# collector targets it directly (see collector-config.yaml).
+networks:
+  default:
+    ipam:
+      config:
+        - subnet: 172.28.71.0/24
+
+services:
+  # Accepts OTLP/HTTP (4318) and OTLP/gRPC (4317) from any instrumented service
+  # and forwards every signal to Weaver over gRPC on the internal network.
+  collector:
+    image: otel/opentelemetry-collector:latest
+    container_name: osc-collector
+    command: ["--config=/etc/otelcol/config.yaml"]
+    volumes:
+      - ./collector-config.yaml:/etc/otelcol/config.yaml:ro
+    ports:
+      - "4318:4318"   # OTLP/HTTP  — external
+      - "4317:4317"   # OTLP/gRPC  — external
+      - "13133:13133" # health_check extension
+    depends_on:
+      weaver:
+        condition: service_healthy
+
+  # Runs `weaver registry live-check`. gRPC listener is internal only; only the
+  # admin port (/stop, /health) is published. Writes live_check.json to the
+  # bind-mounted ./weaver-output directory when the session stops.
+  weaver:
+    image: otel/weaver:latest
+    container_name: osc-weaver
+    command:
+      - registry
+      - live-check
+      - --config=/weaver/.weaver.toml
+      - --output=/tmp/weaver-output
+      - --format=json
+      - --otlp-grpc-address=0.0.0.0
+      - --otlp-grpc-port=4317
+      - --admin-port=4320
+      - --inactivity-timeout=0
+    environment:
+      HOME: /tmp/weaver
+    user: "${UID:-1000}:${GID:-1000}"
+    volumes:
+      - ./.weaver.toml:/weaver/.weaver.toml:ro
+      - ./weaver-output:/tmp/weaver-output
+    ports:
+      - "4320:4320"   # admin: POST /stop, GET /health
+    networks:
+      default:
+        # Stable across `docker start` so the collector's pinned gRPC target
+        # stays valid. Also referenced verbatim in collector-config.yaml.
+        ipv4_address: 172.28.71.10
+    restart: "no"
+    # Weaver resolves the semconv registry (~5-10s) before it binds the gRPC
+    # listener. Gate the collector on the listener actually accepting.
+    healthcheck:
+      test: ["CMD", "nc", "-z", "127.0.0.1", "4317"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+      start_period: 5s
+
+  # Manages the Weaver session lifecycle over the Docker API, parses the report,
+  # loads semconv-checker.config.yaml, and exposes the REST API on :3001.
+  # In the idle state it keeps the weaver container stopped (see src/session.js).
+  backend:
+    build: ./backend
+    container_name: osc-backend
+    # Behind a profile so the phase-1 infrastructure stack (collector + weaver
+    # only) is unaffected. Bring the full app up with `--profile app` or
+    # COMPOSE_PROFILES=app.
+    profiles: ["app"]
+    environment:
+      PORT: "3001"
+      WEAVER_CONTAINER: osc-weaver
+      WEAVER_ADMIN_URL: http://weaver:4320
+      COLLECTOR_CONTAINER: osc-collector
+      COLLECTOR_HEALTH_URL: http://collector:13133/
+      WEAVER_OUTPUT_DIR: /app/weaver-output
+      SEMCONV_CONFIG_PATH: /app/semconv-checker.config.yaml
+      COLLECTOR_METRICS_URL: http://collector:8888/metrics
+      OTLP_GRPC_ADDR: localhost:4317
+      OTLP_HTTP_ADDR: localhost:4318
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./weaver-output:/app/weaver-output
+      - ./semconv-checker.config.yaml:/app/semconv-checker.config.yaml:ro
+    ports:
+      - "3001:3001"
+    depends_on:
+      weaver:
+        condition: service_healthy
+    restart: "no"
+
+  # React + Vite single-page UI (idle -> listening -> report). Built to static
+  # assets and served by nginx, which also reverse-proxies /api/* to the backend
+  # so the browser only ever talks to one origin.
+  frontend:
+    build: ./frontend
+    container_name: osc-frontend
+    profiles: ["app"]
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+    restart: "no"

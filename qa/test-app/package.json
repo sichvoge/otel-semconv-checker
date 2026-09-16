@@ -1,0 +1,16 @@
+{
+  "name": "otel-semconv-checker-test-app",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Synthetic OTLP/HTTP JSON emitter for OTel SemConv Checker phase QA. Dependency-free.",
+  "type": "commonjs",
+  "bin": {
+    "test-app": "index.js"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

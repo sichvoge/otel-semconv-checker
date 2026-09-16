@@ -1,0 +1,19 @@
+{
+  "_comment": "Expected phase-01 findings, verified against a live weaver registry live-check run. Assertions check for PRESENCE of each of these (plus statistics), never an exact finding set - the http.server.request.duration data point also emits other *_attribute_not_present findings (url.scheme, network.protocol.*, server.*, error.type, http.route, ...) that are not enumerated here.",
+  "findings": [
+    { "id": "deprecated", "level": "violation", "signal_type": "span", "signal_name": "my-service", "context": { "attribute_key": "http.method" } },
+    { "id": "deprecated", "level": "violation", "signal_type": "span", "signal_name": "my-service", "context": { "attribute_key": "http.url" } },
+    { "id": "deprecated", "level": "violation", "signal_type": "span", "signal_name": "my-service", "context": { "attribute_key": "http.status_code" } },
+    { "id": "type_mismatch", "level": "violation", "signal_type": "span", "signal_name": "my-service", "context": { "attribute_key": "http.status_code", "expected": "int" } },
+    { "id": "deprecated", "level": "violation", "signal_type": "log", "context": { "attribute_key": "code.function" } },
+    { "id": "required_attribute_not_present", "level": "violation", "signal_type": "metric", "signal_name": "http.server.request.duration", "context": { "attribute_key": "http.request.method" } }
+  ],
+  "no_findings_on": [
+    { "signal_name": "custom.request.count", "attribute_key": "custom.user_id", "reason": "custom.* namespace suppressed by .weaver.toml finding_filters" }
+  ],
+  "suppressed_ids": ["not_stable", "missing_namespace"],
+  "statistics": {
+    "total_entities": "present (any integer)",
+    "advice_type_counts.deprecated": 4
+  }
+}

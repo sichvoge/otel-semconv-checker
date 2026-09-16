@@ -1,0 +1,35 @@
+# Weaver project config for `registry live-check`.
+# Mounted into the Weaver container. Used to suppress noisy findings at source,
+# before they enter the report.
+#
+# NOTE: the config section key is `live-check` (hyphen). Weaver resolves the
+# per-command config table by that literal key; `[live_check]` (underscore) is
+# silently ignored.
+
+[live-check]
+format = "json"
+
+[live-check.otlp]
+grpc_address = "0.0.0.0"
+grpc_port = 4317
+admin_port = 4320
+inactivity_timeout = 0
+
+# not_stable and missing_namespace are too noisy — suppress globally.
+[[live-check.finding_filters]]
+exclude = ["not_stable", "missing_namespace"]
+
+# Suppress the semconv namespace / missing-signal findings for custom-namespace
+# signals only. `sample_names` is the filter's *scope* (finding is dropped only
+# when its sample name matches AND its id is in `exclude`). Do NOT use
+# `exclude_samples` here — weaver ORs it with `exclude`, which would drop these
+# ids for every signal, not just custom ones.
+# Mirror the namespaces listed in semconv-checker.config.yaml custom_namespaces.
+[[live-check.finding_filters]]
+exclude = ["illegal_namespace", "extends_namespace", "missing_attribute", "missing_metric"]
+sample_names = ["custom.*"]
+
+# Belt-and-braces: drop every remaining finding on custom-namespace samples so
+# proprietary signals are fully silenced regardless of finding id.
+[[live-check.finding_filters]]
+exclude_samples = ["custom.*"]

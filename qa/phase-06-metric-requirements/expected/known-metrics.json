@@ -1,0 +1,5 @@
+{
+  "http.server.request.duration": "recommended",
+  "http.client.request.duration": "recommended",
+  "http.server.active_requests": "opt_in"
+}

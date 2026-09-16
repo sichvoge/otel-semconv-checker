@@ -1,0 +1,13 @@
+{
+  "name": "otel-semconv-checker-qa-phase-04",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Phase-04 frontend broken-tab QA (Playwright).",
+  "type": "commonjs",
+  "scripts": {
+    "test": "playwright test"
+  },
+  "devDependencies": {
+    "playwright": "1.49.1"
+  }
+}

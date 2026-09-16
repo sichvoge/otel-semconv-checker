@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.DS_Store
+*.log
+
+# Local compose env (UID/GID for the weaver bind mount) — see README
+.env
+
+# Weaver live-check output — bind mount, regenerated every session
+weaver-output/*
+!weaver-output/.gitkeep

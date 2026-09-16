@@ -1,0 +1,15 @@
+# Phase-02 QA stack.
+#
+# The phase under test IS the root docker-compose.yml (collector + weaver +
+# backend). We include it verbatim so QA exercises the real stack, not a copy
+# that could drift. Relative paths inside the included file
+# (./collector-config.yaml, ./.weaver.toml, ./weaver-output, ./backend,
+# ./semconv-checker.config.yaml) resolve against the repo root, which is where
+# that file lives.
+#
+# The backend service is behind compose profile `app`, so validate.js runs:
+#   COMPOSE_PROFILES=app docker compose -f docker-compose.test.yml up -d --build
+#   COMPOSE_PROFILES=app docker compose -f docker-compose.test.yml down -v --remove-orphans
+# with UID/GID exported in the environment (weaver runs as ${UID}:${GID}).
+include:
+  - ../../docker-compose.yml

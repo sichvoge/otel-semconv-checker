@@ -1,0 +1,23 @@
+# Application-level conformance configuration, mounted into the backend.
+# See references/SPEC.md § Configuration. Every field defaults to [] when absent.
+
+# Namespaces treated as proprietary — silenced from every tab.
+# Mirror these in .weaver.toml finding_filters (sample_names / exclude_samples).
+custom_namespaces:
+  - custom
+
+# Metrics expected to be emitted. If never seen they appear in the missing tab
+# regardless of namespace detection or requirement level.
+expected_metrics:
+  - http.server.active_requests
+
+# Metrics intentionally not emitted — suppressed from the missing tab.
+ignored_metrics:
+  - http.client.request.body.size
+
+# Semconv namespaces to evaluate for missing signals.
+# [] (default) = auto-detect from seen attributes and metrics.
+namespaces: []
+
+# Known / expected violations — documented, expected findings.
+expected_violations: []

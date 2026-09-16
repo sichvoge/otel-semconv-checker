@@ -1,0 +1,19 @@
+{
+  "name": "otel-semconv-checker-backend",
+  "version": "0.1.0",
+  "private": true,
+  "type": "commonjs",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "fetch-metric-requirements": "node scripts/fetch-metric-requirements.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "dockerode": "^4.0.7",
+    "express": "^4.21.2",
+    "js-yaml": "^4.1.0"
+  }
+}

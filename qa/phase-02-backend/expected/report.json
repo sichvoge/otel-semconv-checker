@@ -1,0 +1,69 @@
+{
+  "_comment": "Reference shape of GET /api/report for scenario phase-01. NOT asserted byte-for-byte by validate.js — it checks structure and the presence of specific findings. See plans/PLAN-phase-02-backend.md assertions 5-10.",
+
+  "entities": [
+    {
+      "_note": "Single-key wrapper entries, one per emitted signal sample. Custom-namespace signals (custom.request.count) are dropped by the backend. Findings live at attribute / data-point / signal level inside live_check_result.all_advice[], never at the wrapper top — walk recursively.",
+
+      "resource": {
+        "attributes": ["...resource attributes, each possibly carrying live_check_result..."]
+      },
+      "instrumentation_scope": {
+        "name": "...",
+        "live_check_result": { "all_advice": [] }
+      },
+      "span": {
+        "name": "my-service",
+        "attributes": [
+          {
+            "name": "http.method",
+            "live_check_result": {
+              "all_advice": [
+                {
+                  "level": "violation",
+                  "id": "deprecated",
+                  "context": { "attribute_key": "http.method" },
+                  "signal_name": "my-service",
+                  "signal_type": "span"
+                }
+              ]
+            }
+          },
+          { "name": "http.url", "_advice": "deprecated (violation), context.attribute_key = http.url" },
+          {
+            "name": "http.status_code",
+            "_advice": "deprecated (violation) AND type_mismatch (violation), context.attribute_key = http.status_code"
+          }
+        ]
+      },
+      "log": {
+        "_advice": "deprecated (violation) for code.function, context.attribute_key = code.function, signal_type = log"
+      },
+      "metric": {
+        "name": "http.server.request.duration",
+        "_advice": "required_attribute_not_present (violation) for http.request.method on the data point, context.attribute_key = http.request.method, signal_name = http.server.request.duration"
+      }
+    }
+  ],
+
+  "_expected_signal_names_in_entities": ["my-service", "http.server.request.duration"],
+  "_expected_advice_total": 14,
+  "_expected_advice_summary": {
+    "deprecated": ["http.method", "http.url", "http.status_code", "code.function (log)"],
+    "type_mismatch": ["http.status_code"],
+    "required_attribute_not_present": ["http.request.method (on http.server.request.duration)"]
+  },
+  "_no_custom_entities": "No entity whose signal name starts with 'custom' (custom.request.count metric is filtered out backend-side).",
+
+  "stats": {
+    "_note": "weaver's `statistics` object verbatim.",
+    "registry_coverage": 0.0,
+    "advice_type_counts": { "deprecated": 4, "type_mismatch": 1, "required_attribute_not_present": 1 },
+    "total_entities": 0,
+    "total_entities_by_type": { "span": 0, "metric": 0, "log": 0, "attribute": 0, "resource": 0 },
+    "seen_registry_attributes": { "http.request.method": 0 },
+    "seen_non_registry_attributes": {},
+    "seen_registry_metrics": {},
+    "seen_non_registry_metrics": {}
+  }
+}

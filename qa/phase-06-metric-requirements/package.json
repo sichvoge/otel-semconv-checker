@@ -1,0 +1,13 @@
+{
+  "name": "otel-semconv-checker-qa-phase-06",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Phase-06 metric-requirements script + missing-tab requirement-level QA (Playwright).",
+  "type": "commonjs",
+  "scripts": {
+    "test": "playwright test"
+  },
+  "devDependencies": {
+    "playwright": "1.49.1"
+  }
+}
