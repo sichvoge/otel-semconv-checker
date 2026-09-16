@@ -19,12 +19,11 @@ inactivity_timeout = 0
 [[live-check.finding_filters]]
 exclude = ["not_stable", "missing_namespace"]
 
-# Suppress the semconv namespace / missing-signal findings for custom-namespace
-# signals only. `sample_names` is the filter's *scope* (finding is dropped only
-# when its sample name matches AND its id is in `exclude`). Do NOT use
-# `exclude_samples` here — weaver ORs it with `exclude`, which would drop these
-# ids for every signal, not just custom ones.
-# Mirror the namespaces listed in semconv-checker.config.yaml custom_namespaces.
+# Suppress the semconv namespace / missing-signal findings for the "custom"
+# proprietary namespace only. `sample_names` is the filter's *scope* (finding is
+# dropped only when its sample name matches AND its id is in `exclude`). Do NOT
+# use `exclude_samples` here — weaver ORs it with `exclude`, which would drop
+# these ids for every signal, not just custom ones.
 [[live-check.finding_filters]]
 exclude = ["illegal_namespace", "extends_namespace", "missing_attribute", "missing_metric"]
 sample_names = ["custom.*"]

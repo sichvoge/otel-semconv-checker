@@ -12,9 +12,9 @@ import MissingTab from './MissingTab.jsx';
 // signals with findings) and "what is missing?" (registry signals never
 // emitted for the observed traffic).
 
-export default function ReportPane({ report, config }) {
-  const broken = useMemo(() => buildBrokenModel(report, config), [report, config]);
-  const missing = useMemo(() => buildMissingModel(report, config), [report, config]);
+export default function ReportPane({ report }) {
+  const broken = useMemo(() => buildBrokenModel(report), [report]);
+  const missing = useMemo(() => buildMissingModel(report), [report]);
 
   const [activeTab, setActiveTab] = useState('broken');
   const [sigFilter, setSigFilter] = useState({ broken: 'all', missing: 'all' });

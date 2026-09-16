@@ -3,7 +3,7 @@
 
   "entities": [
     {
-      "_note": "Single-key wrapper entries, one per emitted signal sample. Custom-namespace signals (custom.request.count) are dropped by the backend. Findings live at attribute / data-point / signal level inside live_check_result.all_advice[], never at the wrapper top — walk recursively.",
+      "_note": "Single-key wrapper entries, one per emitted signal sample. Custom-namespace signals (custom.request.count) are still present here — .weaver.toml suppresses their findings at the source but the sample itself remains, with an empty live_check_result.all_advice[]. Findings live at attribute / data-point / signal level inside live_check_result.all_advice[], never at the wrapper top — walk recursively.",
 
       "resource": {
         "attributes": ["...resource attributes, each possibly carrying live_check_result..."]
@@ -53,7 +53,7 @@
     "type_mismatch": ["http.status_code"],
     "required_attribute_not_present": ["http.request.method (on http.server.request.duration)"]
   },
-  "_no_custom_entities": "No entity whose signal name starts with 'custom' (custom.request.count metric is filtered out backend-side).",
+  "_no_custom_advice": "No live_check_result.all_advice[] entry with a signal_name starting with 'custom' — .weaver.toml suppresses every finding on custom.* samples at the source (the custom.request.count sample itself may still be present, with zero advice).",
 
   "stats": {
     "_note": "weaver's `statistics` object verbatim.",

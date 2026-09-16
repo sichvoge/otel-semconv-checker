@@ -114,18 +114,21 @@ inactivity_timeout = 0
 [[live-check.finding_filters]]
 exclude = ["not_stable", "missing_namespace"]
 
-# For custom-namespace signals only, drop the semconv namespace / missing-signal
-# findings. `sample_names` scopes the filter: a finding is dropped only when its
-# sample name matches AND its id is in `exclude`. Do NOT use `exclude_samples`
-# here — Weaver ORs it with `exclude`, which would drop these ids for every
-# signal, not just custom ones.
-# Mirror the namespaces listed in semconv-checker.config.yaml custom_namespaces.
+# For the "custom" proprietary namespace only, drop the semconv namespace /
+# missing-signal findings. `sample_names` scopes the filter: a finding is
+# dropped only when its sample name matches AND its id is in `exclude`. Do NOT
+# use `exclude_samples` here — Weaver ORs it with `exclude`, which would drop
+# these ids for every signal, not just custom ones.
 [[live-check.finding_filters]]
 exclude = ["illegal_namespace", "extends_namespace", "missing_attribute", "missing_metric"]
 sample_names = ["custom.*"]
 
-# Belt-and-braces: drop every remaining finding on custom-namespace samples so
-# proprietary signals are fully silenced regardless of finding id.
+# Belt-and-braces: drop every remaining finding on the "custom" namespace's
+# samples so proprietary signals are fully silenced regardless of finding id.
+# Note: this only clears findings — the sample itself still appears in
+# live_check.json (Weaver has no concept of dropping a sample from the report),
+# it just carries zero advice, so it never surfaces in the broken or missing
+# tabs (which both require an actual finding / registry entry to render).
 [[live-check.finding_filters]]
 exclude_samples = ["custom.*"]
 ```
@@ -136,13 +139,6 @@ Mounted into the backend container. Handles application-specific context that We
 cannot know about.
 
 ```yaml
-# Namespaces treated as proprietary — silenced from all tabs.
-# Mirror these in .weaver.toml finding_filters (sample_names / exclude_samples).
-# Default: []
-custom_namespaces:
-  - custom
-  - myapp
-
 # Metrics explicitly expected to be emitted.
 # If never seen, they appear in the missing tab regardless of namespace detection
 # or requirement level (an opt-in metric listed here is still surfaced).
@@ -154,24 +150,6 @@ expected_metrics:
 # Default: []
 ignored_metrics:
   - http.client.request.body.size
-
-# Known violations — findings that are expected and documented.
-# A suppressed finding that Weaver stops reporting is flagged as stale,
-# so suppressions don't outlive the gap that caused them.
-# Default: []
-expected_violations:
-  - id: required_attribute_not_present
-    context:
-      attribute_name: http.request.method
-    reason: >-
-      This service does not record the request method on its duration metric yet.
-      Tracked in https://github.com/org/repo/issues/123
-  - id: deprecated
-    context:
-      attribute_name: http.method
-    reason: >-
-      Upstream SDK has not yet migrated to http.request.method.
-      Will be resolved when SDK is updated to version 2.x.
 
 # Semconv namespaces to evaluate for missing signals.
 # Overrides automatic detection when set.
@@ -186,10 +164,9 @@ namespaces:
 | Concern | Config file | Reason |
 |---------|------------|--------|
 | Suppress noisy finding types (e.g. `not_stable`) | `.weaver.toml` | Filter at source |
-| Custom namespace suppression | both | Weaver drops findings; semconv checker config tells UI which namespaces are custom |
+| Custom ("proprietary") namespace suppression | `.weaver.toml` | Weaver drops every finding on `custom.*` samples at the source; the broken/missing tabs never render a signal with no finding or registry entry, so no app-level config is needed |
 | Expected metrics | `semconv-checker.config.yaml` | Weaver has no concept of expected signals |
 | Ignored metrics | `semconv-checker.config.yaml` | Application-specific context |
-| Known/expected violations | `semconv-checker.config.yaml` | Suppress specific findings with a documented reason. Stale suppressions are flagged. |
 | Namespace scope for missing tab | `semconv-checker.config.yaml` | Application-specific context |
 
 ---
@@ -232,22 +209,15 @@ Returns the parsed report. Returns 404 if no report available.
 
 ### `GET /api/config`
 
-Returns the active `semconv-checker.config.yaml` as JSON. Used by the frontend to determine
-custom namespaces and expected metrics. Returns defaults if no config file is present.
+Returns the active `semconv-checker.config.yaml` as JSON. Read-only introspection of
+the config the backend loaded at startup; the frontend does not currently consume it.
+Returns defaults if no config file is present.
 
 ```json
 {
-  "custom_namespaces": ["custom"],
   "expected_metrics": ["http.server.active_requests"],
   "ignored_metrics": ["http.client.request.body.size"],
-  "namespaces": ["http", "gen_ai"],
-  "expected_violations": [
-    {
-      "id": "required_attribute_not_present",
-      "context": { "attribute_name": "http.request.method" },
-      "reason": "This service does not record the request method on its duration metric yet."
-    }
-  ]
+  "namespaces": ["http", "gen_ai"]
 }
 ```
 
@@ -392,7 +362,8 @@ Shows all `violation` level findings (`type_mismatch`,
 on non-custom signals, `deprecated`).
 
 `not_stable` findings are suppressed by `.weaver.toml` and never reach the report.
-Custom namespace findings are suppressed by the frontend transform.
+Custom namespace findings are suppressed by `.weaver.toml` too (§ Custom namespace
+suppression).
 Signals never emitted belong in the missing tab.
 
 Cards with violations are expanded by default. Cards with only improvements are
@@ -410,12 +381,14 @@ in `semconv-checker.config.yaml`. Excludes metrics in `ignored_metrics`.
 Each card shows the signal name, stability badge, and the expected attributes with
 their requirement levels (required → red chip, recommended → amber chip).
 
-### Custom namespace transform
+### Custom namespace suppression
 
-Applied in the frontend after loading `GET /api/config`. Any attribute or metric
-whose name starts with a prefix listed in `custom_namespaces` is silently suppressed
-— not shown in any tab, not counted in any stat card. This applies to findings with
-IDs: `missing_attribute`, `missing_metric`, `illegal_namespace`, `extends_namespace`.
+Handled entirely by `.weaver.toml` (§ Configuration) — every finding on a
+`custom.*` sample is dropped at the source, so those signals never carry a
+finding for the broken tab to render, and `custom.*` metrics are never part of
+the semconv registry, so they're never a candidate for the missing tab either.
+No frontend or backend-side filtering is needed. The sample itself still
+appears (with zero findings) in the raw `entities` from `GET /api/report`.
 
 ### Design system
 

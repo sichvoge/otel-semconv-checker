@@ -10,27 +10,14 @@ const yaml = require('js-yaml');
 const CONFIG_PATH = process.env.SEMCONV_CONFIG_PATH || '/app/semconv-checker.config.yaml';
 
 const DEFAULTS = Object.freeze({
-  custom_namespaces: [],
   expected_metrics: [],
   ignored_metrics: [],
   namespaces: [],
-  expected_violations: [],
 });
 
 function asStringArray(v) {
   if (!Array.isArray(v)) return [];
   return v.filter((x) => typeof x === 'string' && x.length > 0);
-}
-
-function normaliseViolations(v) {
-  if (!Array.isArray(v)) return [];
-  return v
-    .filter((x) => x && typeof x === 'object' && typeof x.id === 'string')
-    .map((x) => ({
-      id: x.id,
-      context: x.context && typeof x.context === 'object' ? x.context : {},
-      reason: typeof x.reason === 'string' ? x.reason.trim() : '',
-    }));
 }
 
 function loadConfig(pathOverride) {
@@ -45,11 +32,9 @@ function loadConfig(pathOverride) {
 
   const doc = yaml.load(raw) || {};
   return {
-    custom_namespaces: asStringArray(doc.custom_namespaces),
     expected_metrics: asStringArray(doc.expected_metrics),
     ignored_metrics: asStringArray(doc.ignored_metrics),
     namespaces: asStringArray(doc.namespaces),
-    expected_violations: normaliseViolations(doc.expected_violations),
   };
 }
 

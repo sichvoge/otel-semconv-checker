@@ -3,6 +3,19 @@
 A self-hosted web app that turns [OpenTelemetry Weaver](https://github.com/open-telemetry/weaver)'s
 `registry live-check` output into a conformance report a human can actually read.
 
+## Why this exists
+
+I built the first version of this at a previous employer to answer a basic
+question we couldn't answer with any confidence: how conformant was our
+OpenTelemetry output, right now, against spec? Weaver could already answer
+that, but not in a form you could put in front of a stakeholder and talk
+through. This project closes that gap, turning a conformance check into
+something you can look at and discuss, not something you have to parse.
+
+The tool itself isn't tied to any one product or gateway. It's a generic OTLP
+sink, point any OTel-instrumented service's exporter at it and it works the
+same way.
+
 ## What this is
 
 OpenTelemetry's [semantic conventions](https://opentelemetry.io/docs/specs/semconv/)
@@ -10,8 +23,8 @@ are the shared vocabulary that makes telemetry portable: when every service name
 an HTTP method `http.request.method` and a duration metric
 `http.server.request.duration`, dashboards, alerts and analysis tools work across
 services without per-service special-casing. When instrumentation drifts from the
-spec — a deprecated attribute here, a string where an int was expected there, a
-required attribute quietly omitted — that portability erodes silently, and you
+spec, a deprecated attribute here, a string where an int was expected there, a
+required attribute quietly omitted, that portability erodes silently, and you
 usually find out in production.
 
 **Weaver** is the OpenTelemetry project's tooling for working with semantic
@@ -19,13 +32,13 @@ conventions. `weaver registry live-check` opens an OTLP endpoint, watches the
 telemetry your service actually emits, compares every signal against the
 convention registry, and reports where you **break** the spec (deprecated
 attributes, type mismatches, illegal namespaces) and where signals the spec
-expects are **absent**. It is built to be automated — run it in a CI/CD pipeline,
+expects are **absent**. It is built to be automated, run it in a CI/CD pipeline,
 gate a merge on it, script it.
 
-The catch is that its raw output is a large JSON document. This project keeps the
+The catch is its raw output is a large JSON document. This project keeps the
 automation-friendly parts intact and adds the missing piece: a UI that reads that
 document and shows, at a glance, **what your instrumentation is emitting that
-breaks the spec, and what it's missing** — without anyone parsing JSON by hand.
+breaks the spec, and what it's missing**, without anyone parsing JSON by hand.
 
 ## Install & run
 

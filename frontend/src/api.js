@@ -21,7 +21,6 @@ async function json(method, path) {
 export const getSession = () => json('GET', '/api/session');
 export const startSession = () => json('POST', '/api/session/start');
 export const stopSession = () => json('POST', '/api/session/stop');
-export const getConfig = () => json('GET', '/api/config');
 
 export async function getReport() {
   try {

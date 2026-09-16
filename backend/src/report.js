@@ -10,25 +10,7 @@
 // wrapped object carries the signal name, its attributes, nested data points,
 // and `live_check_result` objects at whichever level a finding applies. The
 // frontend walks this tree recursively; the backend passes it through as
-// `entities`, minus custom-namespace signals, plus a derived `missing` list.
-
-const SIGNAL_WRAPPER_TYPES = ['metric', 'span', 'log', 'span_event', 'event'];
-
-function signalName(sample) {
-  if (!sample || typeof sample !== 'object') return null;
-  for (const t of SIGNAL_WRAPPER_TYPES) {
-    const obj = sample[t];
-    if (obj && typeof obj === 'object') {
-      return obj.name || obj.metric_name || obj.event_name || null;
-    }
-  }
-  return null;
-}
-
-function matchesNamespace(name, prefixes) {
-  if (!name) return false;
-  return prefixes.some((p) => name === p || name.startsWith(`${p}.`));
-}
+// `entities`, plus a derived `missing` list.
 
 // Recursively collect every PolicyFinding embedded in a sample subtree.
 function collectFindings(node, out) {
@@ -75,7 +57,6 @@ function computeMissing(stats, config, metricRequirements) {
   const active = activeNamespaces(stats || {}, config);
   const expected = new Set(config.expected_metrics || []);
   const ignored = new Set(config.ignored_metrics || []);
-  const customPrefixes = config.custom_namespaces || [];
 
   const candidates = new Set();
   for (const [name, count] of Object.entries(seen)) {
@@ -91,7 +72,6 @@ function computeMissing(stats, config, metricRequirements) {
   const cards = [];
   for (const name of candidates) {
     if (ignored.has(name)) continue;
-    if (matchesNamespace(name, customPrefixes)) continue;
 
     const req = reqs[name];
     const level = req ? req.requirement_level : 'recommended';
@@ -117,18 +97,13 @@ function computeMissing(stats, config, metricRequirements) {
 
 function parseReport(raw, config = {}, metricRequirements = {}) {
   const samples = raw && Array.isArray(raw.samples) ? raw.samples : [];
-  const prefixes = Array.isArray(config.custom_namespaces) ? config.custom_namespaces : [];
   const stats = raw && raw.statistics && typeof raw.statistics === 'object' ? raw.statistics : {};
 
-  const entities = samples.filter(
-    (sample) => !matchesNamespace(signalName(sample), prefixes),
-  );
-
   return {
-    entities,
+    entities: samples,
     stats,
     missing: computeMissing(stats, config, metricRequirements),
   };
 }
 
-module.exports = { parseReport, signalName, collectFindings, computeMissing };
+module.exports = { parseReport, collectFindings, computeMissing };

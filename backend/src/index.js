@@ -19,12 +19,12 @@ let config;
 try {
   config = loadConfig();
   console.log(
-    `[backend] config loaded: custom_namespaces=${JSON.stringify(config.custom_namespaces)} ` +
-      `expected_metrics=${config.expected_metrics.length} namespaces=${JSON.stringify(config.namespaces)}`,
+    `[backend] config loaded: expected_metrics=${config.expected_metrics.length} ` +
+      `namespaces=${JSON.stringify(config.namespaces)}`,
   );
 } catch (err) {
   console.error(`[backend] failed to load config: ${err.message}`);
-  config = { custom_namespaces: [], expected_metrics: [], ignored_metrics: [], namespaces: [], expected_violations: [] };
+  config = { expected_metrics: [], ignored_metrics: [], namespaces: [] };
 }
 
 // Metric requirement levels / stability / attributes for the "what is missing?"

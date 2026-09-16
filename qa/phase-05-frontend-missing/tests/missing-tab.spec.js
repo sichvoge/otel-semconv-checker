@@ -15,10 +15,10 @@
  * assertions.
  *
  * The missing-tab contents are computed backend-side. beforeAll fetches
- * GET /api/report + GET /api/config and derives the expected view model the
- * same way the frontend transform does (report.missing[], minus custom-namespace
- * suppression) so the assertions check the rendered DOM against the backend
- * truth rather than against hard-coded values.
+ * GET /api/report and derives the expected view model the same way the
+ * frontend transform does (report.missing[]) so the assertions check the
+ * rendered DOM against the backend truth rather than against hard-coded
+ * values.
  *
  * Selectors mirror references/prototype-2026-04-15.html and the builder's
  * components:
@@ -54,18 +54,12 @@ function writeWalk(obj) {
   fs.writeFileSync(WALK_STATUS, JSON.stringify(obj, null, 2));
 }
 
-function isCustomNamespace(name, prefixes) {
-  if (!name || !Array.isArray(prefixes)) return false;
-  return prefixes.some((p) => name === p || name.startsWith(`${p}.`));
-}
-
 // Mirror frontend lib/transform.js buildMissingModel: the backend already
-// resolved each card; the frontend only re-applies custom-namespace suppression.
-function buildExpectedMissing(report, config) {
+// resolved each card.
+function buildExpectedMissing(report) {
   const missing = report && Array.isArray(report.missing) ? report.missing : [];
-  const prefixes = (config && Array.isArray(config.custom_namespaces)) ? config.custom_namespaces : [];
   return missing
-    .filter((m) => m && m.name && !isCustomNamespace(m.name, prefixes))
+    .filter((m) => m && m.name)
     .map((m) => ({
       name: m.name,
       signalType: m.signal_type || 'metric',
@@ -118,12 +112,10 @@ test.describe.serial('phase-5 what-is-missing tab', () => {
 
       // pull the backend truth for the missing tab
       const repRes = await page.request.get(`${BASE}/api/report`);
-      const cfgRes = await page.request.get(`${BASE}/api/config`);
-      console.log(`[spec] GET /api/report -> HTTP ${repRes.status()}  GET /api/config -> HTTP ${cfgRes.status()}`);
+      console.log(`[spec] GET /api/report -> HTTP ${repRes.status()}`);
       const report = await repRes.json();
-      const config = await cfgRes.json();
       ctx.rawMissingCount = Array.isArray(report.missing) ? report.missing.length : -1;
-      ctx.expected = buildExpectedMissing(report, config);
+      ctx.expected = buildExpectedMissing(report);
       ctx.names = ctx.expected.map((m) => m.name);
       console.log(`[spec] backend report.missing (${ctx.rawMissingCount}) -> expected cards after transform: ${JSON.stringify(ctx.expected, null, 2)}`);
 
@@ -172,7 +164,7 @@ test.describe.serial('phase-5 what-is-missing tab', () => {
     await expect(missingStat).toHaveClass(/active-stat/);
     const shown = parseInt((await missingStat.locator('.sval').innerText()).replace(/[^0-9]/g, ''), 10);
     const renderedCards = await page.locator('.ecard.missing').count();
-    // stat number == rendered missing cards == backend-computed report.missing (post custom-ns transform)
+    // stat number == rendered missing cards == backend-computed report.missing
     expect(Number.isNaN(shown)).toBe(false);
     expect(shown).toBe(ctx.expected.length);
     expect(renderedCards).toBe(ctx.expected.length);

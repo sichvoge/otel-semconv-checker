@@ -14,11 +14,12 @@
  *   7.  Wait 5s
  *   8.  POST /api/session/stop -> assert 200
  *   9.  Poll GET /api/session until status === "report" (timeout 20s)
- *  10.  GET /api/report -> report assertions
- *  11.  GET /api/config -> assert custom_namespaces == ["custom"]
- *  12.  POST /api/session/start -> assert status "listening"; GET /api/report -> 404
- *  13.  COMPOSE_PROFILES=app docker compose ... down -v --remove-orphans
- *  14.  Print summary, exit 0 (all pass) / 1 (any fail)
+ *  10.  GET /api/report -> report assertions, incl. no *findings* on custom.*
+ *       signals (.weaver.toml suppresses them at the source; the entity itself
+ *       may still be present with zero advice)
+ *  11.  POST /api/session/start -> assert status "listening"; GET /api/report -> 404
+ *  12.  COMPOSE_PROFILES=app docker compose ... down -v --remove-orphans
+ *  13.  Print summary, exit 0 (all pass) / 1 (any fail)
  *
  * Only reads/writes under qa/. Never mutates implementation files.
  */
@@ -122,19 +123,6 @@ function collectAdvice(node, acc) {
     }
   }
   return acc;
-}
-
-// Signal name of a single-key wrapper entry ({span:{…}}, {metric:{…}}, …).
-const WRAPPER_TYPES = ['metric', 'span', 'log', 'span_event', 'event'];
-function entitySignalName(entry) {
-  if (!entry || typeof entry !== 'object') return null;
-  for (const t of WRAPPER_TYPES) {
-    const obj = entry[t];
-    if (obj && typeof obj === 'object') {
-      return obj.name || obj.metric_name || obj.event_name || null;
-    }
-  }
-  return null;
 }
 
 // ---- assertions ---------------------------------------------------------
@@ -242,31 +230,19 @@ async function main() {
     assert(9, 'required_attribute_not_present finding for http.request.method present in entities', ranp,
       ranp ? `signal_name=${ranp.signal_name} signal_type=${ranp.signal_type}` : 'not found');
 
-    const signalNames = entities ? entities.map(entitySignalName).filter(Boolean) : [];
-    const customNames = signalNames.filter((n) => n === 'custom' || n.startsWith('custom.'));
     const customAdvice = advice.filter(
       (a) => a && typeof a.signal_name === 'string' && (a.signal_name === 'custom' || a.signal_name.startsWith('custom.')));
-    assert(10, 'No entities with a custom.* signal name in the report',
-      customNames.length === 0 && customAdvice.length === 0,
-      customNames.length || customAdvice.length
-        ? `entity signal names: [${customNames.join(', ')}]  advice signal_name matches: ${customAdvice.length}`
-        : `entity signal names: [${signalNames.join(', ')}]`);
+    assert(10, 'No findings on custom.* signals (.weaver.toml suppresses them at the source)',
+      customAdvice.length === 0,
+      `advice entries with a custom.* signal_name: ${customAdvice.length}`);
 
-    // -- 11. config ---------------------------------------------
-    const cfg = await req('GET', '/api/config');
-    log(`GET /api/config -> ${cfg.status} custom_namespaces=${JSON.stringify(cfg.body && cfg.body.custom_namespaces)}`);
-    const cns = cfg.body && cfg.body.custom_namespaces;
-    assert(11, 'GET /api/config returns custom_namespaces: ["custom"]',
-      cfg.status === 200 && Array.isArray(cns) && cns.length === 1 && cns[0] === 'custom',
-      `custom_namespaces=${JSON.stringify(cns)}`);
-
-    // -- 12. start after report clears it -----------------------
+    // -- 11. start after report clears it -----------------------
     log('POST /api/session/start (after report) ...');
     const start3 = await req('POST', '/api/session/start');
     log(`  -> ${start3.status} ${JSON.stringify(start3.body)}`);
     const rep2 = await req('GET', '/api/report');
     log(`GET /api/report (after restart) -> ${rep2.status}`);
-    assert(12, 'POST /api/session/start after report clears previous report and returns to listening',
+    assert(11, 'POST /api/session/start after report clears previous report and returns to listening',
       start3.status === 200 && start3.body && start3.body.status === 'listening' && rep2.status === 404,
       `start=${start3.status} body.status=${start3.body && start3.body.status} report=${rep2.status}`);
 
@@ -276,14 +252,14 @@ async function main() {
       assert(99, `validate.js run aborted: ${err && err.message ? err.message : err}`, false, 'see log above');
     }
   } finally {
-    // -- 13. tear down ---------------------------------------
+    // -- 12. tear down ---------------------------------------
     if (stackUp) {
       log('Tearing down stack (COMPOSE_PROFILES=app down -v --remove-orphans) ...');
       compose(['down', '-v', '--remove-orphans'], { inherit: true });
     }
   }
 
-  // -- 14. summary -----------------------------------------
+  // -- 13. summary -----------------------------------------
   const passed = results.filter((r) => r.pass).length;
   const total = results.length;
   console.log('');
@@ -292,7 +268,7 @@ async function main() {
     log(`  ${r.pass ? '✓' : '✗'} ${r.n}. ${r.desc}${r.detail ? `  [${r.detail}]` : ''}`);
   }
   console.log('');
-  if (passed === total && total >= 12) {
+  if (passed === total && total >= 11) {
     log(`PASSED — ${passed}/${total} assertions passed`);
     process.exit(0);
   } else {
